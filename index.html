@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasey Engineering Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2044;--blue:#2563eb;--sky:#38bdf8;--orange:#f97316;--amber:#fbbf24;--green:#22c55e;--red:#ef4444;--ink:#0f172a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--navy);min-height:100vh}
+.page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;z-index:1}
+.page.hide{display:none}
+#pg-test{align-items:flex-start;padding-top:16px}
+.card{background:#fff;border-radius:22px;padding:28px 32px;box-shadow:0 8px 40px rgba(0,0,0,.18);width:100%;max-width:820px}
+.card.xl{max-width:1180px}
+/* gears bg */
+.gbg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.gr{position:absolute;opacity:.05;font-size:220px;animation:spin linear infinite}
+.gr:nth-child(1){top:-80px;left:-80px;animation-duration:32s}
+.gr:nth-child(2){bottom:-100px;right:-100px;font-size:300px;animation-duration:24s;animation-direction:reverse}
+.gr:nth-child(3){top:45%;left:42%;font-size:140px;animation-duration:48s}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* type */
+h1{font-family:'Baloo 2',cursive;font-size:1.5rem;color:#1e4080;line-height:1.1}
+h2{font-family:'Baloo 2',cursive;font-size:1.6rem;color:#1e4080}
+h3{font-family:'Baloo 2',cursive;font-size:1.15rem;color:#1e4080}
+.sub{color:#64748b;font-size:.92rem;margin-bottom:14px}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:.97rem;cursor:pointer;transition:transform .15s,filter .15s;font-weight:600}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn-blue{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff}
+.btn-orange{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff}
+.btn-green{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.btn-gray{background:#e2e8f0;color:#475569}
+.btn-dark{background:#0f2044;color:#fff}
+.btn-sm{padding:8px 18px;font-size:.85rem}
+.hide{display:none!important}
+/* welcome */
+.wc{text-align:center;padding:8px 0 20px}
+.spin{font-size:4rem;animation:spin 9s linear infinite;display:inline-block}
+.hello{font-family:'Baloo 2',cursive;font-size:2.8rem;color:#f97316;animation:bob .65s ease infinite alternate}
+@keyframes bob{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+.wc h2{font-size:1.9rem;margin:6px 0 10px}
+.ibox{border-radius:14px;padding:13px 17px;margin-bottom:14px;font-size:.88rem;font-weight:600}
+.ib-blue{background:#eff6ff;border:1.5px solid #bfdbfe;color:#1e40af}
+.ib-amber{background:#fff7ed;border:1.5px solid #fed7aa;color:#7c2d12}
+/* hub */
+.hdr{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:18px;border-bottom:3px solid #f1f5f9}
+.rchip{margin-left:auto;background:linear-gradient(135deg,#1e4080,#2563eb);color:#fff;border-radius:14px;padding:8px 14px;text-align:center;min-width:105px}
+.rchip-ico{font-size:1.5rem}
+.rchip-nm{font-family:'Baloo 2',cursive;font-size:.72rem;letter-spacing:.4px}
+/* progress */
+.pw{background:#f8fafc;border-radius:12px;padding:12px 16px;margin-bottom:16px}
+.pr{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+.pr:last-child{margin-bottom:0}
+.pl{font-weight:700;font-size:.8rem;color:#64748b;min-width:90px}
+.pb{flex:1;height:11px;background:#e2e8f0;border-radius:20px;overflow:hidden}
+.pf{height:100%;border-radius:20px;transition:width .9s ease}
+.pf-b{background:linear-gradient(90deg,#2563eb,#38bdf8)}
+.pf-o{background:linear-gradient(90deg,#f97316,#fbbf24)}
+.pc{font-weight:800;font-size:.8rem;color:#1e4080;min-width:30px}
+/* badges */
+.brow{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.bdg{text-align:center;min-width:80px}
+.bring{width:62px;height:62px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;border:4px solid #cbd5e1;background:#f1f5f9;opacity:.4;transition:all .4s}
+.bring.on{opacity:1;box-shadow:0 0 16px rgba(251,191,36,.6);animation:glow 2s ease infinite alternate}
+@keyframes glow{from{box-shadow:0 0 6px rgba(251,191,36,.4)}to{box-shadow:0 0 22px rgba(251,191,36,.8)}}
+.blbl{font-size:.7rem;font-weight:700;color:#64748b;line-height:1.3}
+/* story grid */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(182px,1fr));gap:11px;margin-top:10px}
+.sbtn{background:#f8fafc;border:2.5px solid #e2e8f0;border-radius:15px;padding:13px;cursor:pointer;text-align:left;transition:all .2s;font-family:'Nunito',sans-serif;width:100%}
+.sbtn:hover{border-color:#2563eb;background:#eff6ff;transform:translateY(-2px)}
+.sbtn.locked{opacity:.4;cursor:not-allowed;pointer-events:none}
+.sbtn.done{border-color:#22c55e;background:#f0fdf4;cursor:default;pointer-events:none}
+.sn{font-family:'Baloo 2',cursive;font-size:.73rem;color:#94a3b8;margin-bottom:3px}
+.st{font-weight:700;font-size:.88rem;color:#0f172a;margin-bottom:6px;line-height:1.25}
+.stags{display:flex;gap:5px;flex-wrap:wrap}
+.tg{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:700}
+.tg-s{background:#fef3c7;color:#92400e}.tg-l{background:#dbeafe;color:#1e40af}
+.tg-th{background:#f3e8ff;color:#6d28d9}.tg-ok{background:#dcfce7;color:#166534}
+.tg-rt{background:#fee2e2;color:#991b1b}
+.divider{border:none;border-top:2px solid #f1f5f9;margin:16px 0}
+/* test */
+.tbar{display:flex;align-items:center;gap:11px;background:#0f2044;border-radius:13px;padding:9px 16px;margin-bottom:12px}
+.ttrack{flex:1;height:10px;background:rgba(255,255,255,.12);border-radius:20px;overflow:hidden}
+.tfill{height:100%;border-radius:20px;background:linear-gradient(90deg,#22c55e,#fbbf24);transition:width .5s linear}
+.tfill.warn{background:linear-gradient(90deg,#fbbf24,#f97316)}.tfill.hot{background:linear-gradient(90deg,#f97316,#ef4444)}
+.tlbl{font-family:'Baloo 2',cursive;color:#fff;min-width:44px;text-align:right;font-size:1.05rem}
+.rbar{display:flex;align-items:center;gap:11px;background:#eff6ff;border:2px solid #bfdbfe;border-radius:13px;padding:10px 15px;margin-bottom:12px;flex-wrap:wrap}
+.rdots{display:flex;gap:7px}
+.rdot{width:32px;height:32px;border-radius:50%;border:3px solid #93c5fd;background:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;cursor:pointer;transition:all .3s;user-select:none}
+.rdot.lit{background:linear-gradient(135deg,#2563eb,#38bdf8);border-color:#2563eb;color:#fff}
+.rmsg{font-weight:700;font-size:.82rem;color:#1e40af;flex:1}
+/* split */
+.split{display:grid;grid-template-columns:44% 56%;gap:15px;align-items:start}
+.spane{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:18px;position:sticky;top:10px;max-height:calc(100vh - 56px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#bfdbfe transparent}
+.spane::-webkit-scrollbar{width:4px}.spane::-webkit-scrollbar-thumb{background:#bfdbfe;border-radius:3px}
+.slbl{font-family:'Baloo 2',cursive;font-size:.8rem;color:#0369a1;background:#e0f2fe;padding:2px 11px;border-radius:20px;display:inline-block;margin-bottom:9px}
+.sttl{font-family:'Baloo 2',cursive;font-size:1.2rem;color:#f97316;margin-bottom:10px}
+.sbody p{margin-bottom:.68em;line-height:1.85;font-size:.93rem;color:#1e293b}
+.vw{background:linear-gradient(180deg,transparent 55%,#fde68a 55%);cursor:help;font-weight:700;position:relative}
+.vw::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:#0f2044;color:#fff;padding:5px 11px;border-radius:9px;font-size:.75rem;width:175px;text-align:center;z-index:30;display:none;pointer-events:none;white-space:normal}
+.vw:hover::after{display:block}
+.qpane{display:flex;flex-direction:column;gap:10px}
+.cl{background:#fff7ed;border:2px solid #fed7aa;border-radius:13px;padding:11px 15px}
+.clt{font-family:'Baloo 2',cursive;font-size:.85rem;color:#f97316;margin-bottom:5px}
+.clt+ul{margin-left:1em;font-size:.8rem;color:#7c2d12;font-weight:600;line-height:1.85}
+/* qblock */
+.qb{background:#fff;border:2.5px solid #e2e8f0;border-radius:15px;padding:16px 18px;transition:border-color .2s,background .2s}
+.qb.ok{border-color:#22c55e;background:#f0fdf4}.qb.bad{border-color:#ef4444;background:#fff1f2}
+.qtype{font-family:'Baloo 2',cursive;font-size:.73rem;color:#94a3b8;margin-bottom:3px}
+.qtype.inf{color:#f97316}
+.qtxt{font-weight:700;font-size:.92rem;margin-bottom:10px;color:#0f172a}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{background:#f8fafc;border:2.5px solid #e2e8f0;border-radius:11px;padding:9px 14px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-align:left;transition:all .18s;display:flex;align-items:center;gap:8px;width:100%}
+.opt:hover{border-color:#2563eb;background:#eff6ff}
+.opt.right{background:#dcfce7;border-color:#22c55e;color:#166534;pointer-events:none}
+.opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b;pointer-events:none}
+.optl{width:22px;height:22px;border-radius:50%;background:#e2e8f0;display:inline-flex;align-items:center;justify-content:center;font-size:.73rem;font-weight:800;flex-shrink:0}
+.fb{margin-top:9px;border-radius:11px;padding:10px 14px;font-weight:700;font-size:.84rem;display:none;line-height:1.4}
+.fb.show{display:block}
+.fb.yes{background:#dcfce7;color:#15803d;border:1.5px solid #86efac}
+.fb.no{background:#fef9c3;color:#854d0e;border:1.5px solid #fde68a}
+/* coach */
+.ov{position:fixed;inset:0;background:rgba(15,32,68,.75);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.ov.hide{display:none}
+.modal{background:#fff;border-radius:22px;padding:30px 34px;max-width:400px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(15,32,68,.28)}
+.mico{font-size:3.2rem;display:block;margin-bottom:9px}
+.modal h3{font-family:'Baloo 2',cursive;font-size:1.4rem;color:#1e4080;margin-bottom:7px}
+.modal p{color:#475569;line-height:1.6;margin-bottom:13px;font-size:.92rem}
+.hint{background:#eff6ff;border:2px solid #bfdbfe;border-radius:11px;padding:10px 14px;font-weight:700;color:#1e4080;margin-bottom:16px;font-size:.85rem}
+/* toast */
+.toast{position:fixed;top:66px;left:50%;transform:translateX(-50%) translateY(-18px);background:linear-gradient(135deg,#f97316,#fbbf24);color:#fff;font-family:'Baloo 2',cursive;font-size:.95rem;padding:10px 22px;border-radius:30px;z-index:400;opacity:0;transition:all .35s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* result */
+.sring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.8rem;margin:0 auto 14px}
+.ritem{margin-bottom:8px;padding:9px 13px;border-radius:11px;font-size:.84rem;line-height:1.5}
+.riq{font-weight:700;margin-bottom:2px}.ria{color:#475569}.rie{color:#64748b;margin-top:2px}
+/* fast round */
+.frp{text-align:center;font-family:'Baloo 2',cursive;font-size:1.6rem;color:#0f172a;margin:12px 0 5px;line-height:1.3}
+.frh{text-align:center;color:#64748b;font-size:.85rem;margin-bottom:15px}
+.frgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:480px;margin:0 auto}
+.fopt{background:#f8fafc;border:2.5px solid #e2e8f0;border-radius:13px;padding:12px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;transition:all .18s;width:100%}
+.fopt:hover{border-color:#2563eb;background:#eff6ff}
+.fopt.hit{background:#dcfce7;border-color:#22c55e;color:#166534;pointer-events:none}
+.fopt.miss{background:#fee2e2;border-color:#ef4444;color:#991b1b;pointer-events:none}
+.sylb{display:inline-block;background:#eff6ff;border:2px solid #bfdbfe;border-radius:9px;padding:5px 12px;font-family:'Baloo 2',cursive;font-size:1rem;color:#1e4080;margin:3px;opacity:0;transform:scale(.7);transition:all .32s}
+.sylb.pop{opacity:1;transform:scale(1)}
+.trow{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:11px 0}
+.tile{background:#fff;border:2.5px solid #cbd5e1;border-radius:11px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.2rem;cursor:pointer;transition:all .18s;user-select:none}
+.tile:hover{border-color:#2563eb;background:#eff6ff}
+.tile.used{opacity:.3;pointer-events:none}
+.srow{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 13px}
+.slot{width:46px;height:46px;border-radius:11px;border:2.5px dashed #cbd5e1;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.2rem;background:#f8fafc;cursor:pointer;transition:all .18s}
+.slot.filled{border-style:solid;border-color:#2563eb;background:#eff6ff;color:#2563eb}
+/* confetti */
+.cw{position:fixed;inset:0;pointer-events:none;z-index:600}
+.cp{position:absolute;border-radius:2px;animation:cfall linear forwards}
+@keyframes cfall{0%{opacity:1;transform:translateY(-10px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+/* ceremony */
+.cerb{background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 8px 28px rgba(245,158,11,.2);text-align:center}
+@media(max-width:780px){.split{grid-template-columns:1fr}.spane{position:static;max-height:260px}.frgrid{grid-template-columns:1fr}}
+@media(max-width:580px){.card{padding:18px 13px}.sgrid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="gbg"><div class="gr">⚙️</div><div class="gr">⚙️</div><div class="gr">⚙️</div></div>
+<div class="toast" id="K_toast"></div>
+<div class="cw" id="K_confetti"></div>
+
+<!-- COACH -->
+<div class="ov hide" id="K_coach">
+  <div class="modal">
+    <span class="mico" id="K_cico">🤔</span>
+    <h3 id="K_cttl">Think Like an Engineer!</h3>
+    <p id="K_cmsg">Engineers never guess.</p>
+    <div class="hint" id="K_chint">Re-read that part of the story.</div>
+    <button class="btn btn-blue" id="K_cclose">I will try again! 💪</button>
+  </div>
+</div>
+
+<!-- WELCOME -->
+<div class="page" id="K_welcome">
+<div class="card" style="max-width:560px">
+  <div class="wc">
+    <div class="spin">⚙️</div>
+    <div class="hello">Hello, Kasey! 👋</div>
+    <h2>Engineering Reading Academy</h2>
+    <p class="sub">Read stories, answer questions, earn engineering badges — train your brain like the engineer you are going to be!</p>
+  </div>
+  <div class="ibox ib-blue">
+    <strong style="font-family:'Baloo 2',cursive;display:block;margin-bottom:7px">🏅 Engineering Ranks</strong>
+    ⚙️ Apprentice Engineer — Stories 1–4<br>
+    🔧 Junior Engineer — Stories 5–8<br>
+    🏗️ Field Engineer — Stories 9–12<br>
+    🚀 Senior Engineer — Stories 13–16<br>
+    👷 Chief Engineer — Stories 17–20
+  </div>
+  <div class="ibox ib-amber">
+    📋 <strong>Rules:</strong> Read each story 3 times · Read ALL answer choices · Take your time (10 min max) · Need 100% for badge!
+  </div>
+  <div style="text-align:center">
+    <button class="btn btn-orange" id="K_goHub" style="font-size:1.05rem;padding:13px 36px">Start Engineering! 🚀</button>
+  </div>
+</div>
+</div>
+
+<!-- HUB -->
+<div class="page hide" id="K_hub">
+<div class="card">
+  <div class="hdr">
+    <span style="font-size:2rem">⚙️</span>
+    <div>
+      <h1>Engineering Reading Academy</h1>
+      <div style="font-family:'Baloo 2',cursive;font-size:.85rem;color:#f97316">Kasey's Dashboard</div>
+    </div>
+    <div class="rchip">
+      <div class="rchip-ico" id="K_rico">⚙️</div>
+      <div class="rchip-nm" id="K_rnm">APPRENTICE</div>
+    </div>
+  </div>
+  <div class="pw">
+    <div class="pr">
+      <span class="pl">Rank Progress</span>
+      <div class="pb"><div class="pf pf-b" id="K_pbr" style="width:0%"></div></div>
+      <span class="pc" id="K_pcr">0/4</span>
+    </div>
+    <div class="pr">
+      <span class="pl">Overall</span>
+      <div class="pb"><div class="pf pf-o" id="K_pba" style="width:0%"></div></div>
+      <span class="pc" id="K_pca">0/20</span>
+    </div>
+  </div>
+  <h3 style="margin-bottom:10px">🏅 Badges</h3>
+  <div class="brow" id="K_badges"></div>
+  <div class="divider"></div>
+  <h3 style="margin-bottom:4px">📚 Pick a Story</h3>
+  <p class="sub">Get 100% on all 4 stories in a rank → Fast Round → Badge!</p>
+  <div class="sgrid" id="K_grid"></div>
+</div>
+</div>
+
+<!-- TEST -->
+<div class="page hide" id="K_test">
+<div class="card xl">
+  <div class="hdr" style="margin-bottom:12px">
+    <span style="font-size:1.8rem">📖</span>
+    <div>
+      <h1 id="K_tttl">Story Title</h1>
+      <div style="font-family:'Baloo 2',cursive;font-size:.84rem;color:#f97316" id="K_tsub">2nd Grade</div>
+    </div>
+    <button class="btn btn-dark btn-sm" id="K_back">← Hub</button>
+  </div>
+  <div class="tbar">
+    <span style="font-size:1.3rem">⏱️</span>
+    <div class="ttrack"><div class="tfill" id="K_tfill"></div></div>
+    <span class="tlbl" id="K_ttxt">10:00</span>
+  </div>
+  <div class="rbar">
+    <div class="rdots">
+      <div class="rdot" id="K_rd1">1️⃣</div>
+      <div class="rdot" id="K_rd2">2️⃣</div>
+      <div class="rdot" id="K_rd3">3️⃣</div>
+    </div>
+    <div class="rmsg" id="K_rmsg">Tap a number each time you finish reading!</div>
+  </div>
+  <div class="split">
+    <div class="spane">
+      <span class="slbl">📖 Read Along</span>
+      <div class="sttl" id="K_sttl"></div>
+      <div class="sbody" id="K_sbody"></div>
+      <div style="margin-top:11px;padding:7px 12px;background:#eff6ff;border-radius:9px;font-size:.75rem;color:#0369a1">
+        💡 Hover over <span class="vw" style="cursor:default">yellow words</span> for definitions!
+      </div>
+    </div>
+    <div class="qpane">
+      <div class="cl">
+        <div class="clt">⚠️ Engineer's Checklist</div>
+        <ul>
+          <li>Have you read the story 3 times?</li>
+          <li>Read ALL answer choices before picking</li>
+          <li>Think carefully — do not rush!</li>
+        </ul>
+      </div>
+      <div id="K_qwrap"></div>
+      <button class="btn btn-green hide" id="K_submit" style="width:100%;justify-content:center">Submit Answers ✅</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- RESULT -->
+<div class="page hide" id="K_result">
+<div class="card" style="max-width:580px;text-align:center">
+  <div id="K_rico2" style="font-size:2.8rem;margin-bottom:8px">🎉</div>
+  <h2 id="K_rttl">Great Job!</h2>
+  <div class="sring" id="K_sring">100%</div>
+  <p id="K_rmsg2" class="sub"></p>
+  <div id="K_frlock"></div>
+  <div class="divider"></div>
+  <h3 style="text-align:left;margin-bottom:9px">Question Review</h3>
+  <div id="K_review"></div>
+  <div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+    <button class="btn btn-blue" id="K_rhub">← Back to Hub</button>
+    <button class="btn btn-orange hide" id="K_rnext">Next Story →</button>
+  </div>
+</div>
+</div>
+
+<!-- FAST ROUND -->
+<div class="page hide" id="K_fast">
+<div class="card" style="max-width:660px">
+  <div class="hdr" style="margin-bottom:12px">
+    <span style="font-size:1.9rem">⚡</span>
+    <div><h1>Fast Round Challenge!</h1><div style="font-family:'Baloo 2',cursive;font-size:.84rem;color:#f97316">Rank Up Word Skills</div></div>
+  </div>
+  <div id="K_frinfo" style="margin-bottom:14px"></div>
+  <div id="K_frscore" style="font-family:'Baloo 2',cursive;font-size:1.05rem;color:#f97316;text-align:center;margin-bottom:11px">Score: 0 / 0</div>
+  <div id="K_frarea" style="min-height:200px"></div>
+  <div style="text-align:center;margin-top:15px">
+    <button class="btn btn-blue hide" id="K_frnext">Next ➡️</button>
+    <button class="btn btn-green hide" id="K_frdone">Claim My Badge! 🏅</button>
+  </div>
+</div>
+</div>
+
+<!-- BADGE CEREMONY -->
+<div class="page hide" id="K_badge">
+<div class="card" style="max-width:500px;text-align:center">
+  <div id="K_bico" style="font-size:5rem;margin-bottom:9px">🏅</div>
+  <h2 id="K_bttl">Badge Earned!</h2>
+  <p id="K_bsub" class="sub"></p>
+  <div class="cerb" id="K_bbody"></div>
+  <button class="btn btn-orange" id="K_bcer" style="font-size:1rem;padding:13px 32px">Keep Engineering! ⚙️</button>
+</div>
+</div>
+
+<script>
+// ── DATA ───────────────────────────────────────────────────
+var RANKS=[
+  {id:0,name:"Apprentice Engineer",icon:"⚙️",stories:[0,1,2,3]},
+  {id:1,name:"Junior Engineer",    icon:"🔧",stories:[4,5,6,7]},
+  {id:2,name:"Field Engineer",     icon:"🏗️", stories:[8,9,10,11]},
+  {id:3,name:"Senior Engineer",    icon:"🚀",stories:[12,13,14,15]},
+  {id:4,name:"Chief Engineer",     icon:"👷",stories:[16,17,18,19]}
+];
+
+var STORIES = [
+{id:0,rank:0,len:"short",title:"The Bridge Builder",theme:"Engineering",
+ vocab:[{w:"bridge",d:"a structure built over water so people can cross"},{w:"strong",d:"able to hold heavy things without breaking"}],
+ text:"Sam wanted to cross the muddy stream. He looked around. He found two big sticks and some flat rocks.\n\nSam laid the sticks across the stream. Then he placed the flat rocks on top. He tested it with his foot. It held!\n\nSam walked across his homemade <span class=\"vword\" data-def=\"a structure built to cross water\">bridge</span>.\n\n\"A good engineer uses what they have,\" his dad said.\n\nSam smiled. He had solved the problem all by himself. The bridge was small but it was <span class=\"vword\" data-def=\"able to hold heavy things without breaking\">strong</span>.",
+ questions:[
+  {type:"literal",   text:"What did Sam use to build his bridge?",
+   opts:["Metal and cement","Two sticks and flat rocks","Bricks and rope","Logs and wire"], ans:1,
+   explain:"Sam found two big sticks and flat rocks nearby and used them to build a crossing."},
+  {type:"inference", text:"Why did Sam test the bridge with his foot before walking across?",
+   opts:["He wanted to kick a rock","He wanted to make sure it was safe and strong enough","He forgot he was wearing shoes","He was playing a game"], ans:1,
+   explain:"An engineer always tests before using. Sam was being careful and smart by checking the bridge first."},
+  {type:"vocab",     text:"What does the word 'bridge' mean in this story?",
+   opts:["A type of rock","A muddy stream","A structure built to cross water","A kind of stick"], ans:2,
+   explain:"A bridge is built so people can cross water or a gap safely."},
+  {type:"main-idea", text:"What is the main idea of this story?",
+   opts:["Sam likes to play in mud","Sam built a bridge by thinking like an engineer","Sam's dad is a builder","Streams are dangerous"], ans:1,
+   explain:"The whole story shows Sam solving a problem creatively — just like an engineer!"}
+ ]},
+{id:1,rank:0,len:"long",title:"Maya and the Broken Fan",theme:"Problem Solving",
+ vocab:[{w:"wobble",d:"to move unsteadily from side to side"},{w:"blade",d:"a flat thin part that spins to move air"}],
+ text:"It was the hottest day of summer. Maya's bedroom fan made a loud rattling noise and stopped.\n\nMaya looked at it carefully. One of the fan <span class=\"vword\" data-def=\"a flat thin part that spins to move air\">blades</span> was bent. It made the whole fan <span class=\"vword\" data-def=\"to move unsteadily from side to side\">wobble</span> and rattle.\n\n\"I can fix this,\" Maya said.\n\nShe asked her mom if she could use the toolbox. She found a small tool that bent the blade back into shape. Then she tightened the loose screws on the base.\n\nShe plugged the fan back in. It hummed quietly and blew cool air.\n\n\"How did you know what to do?\" her little brother asked.\n\n\"I looked at the problem carefully first,\" Maya said. \"Engineers do not just guess. They observe, think, then fix.\"\n\nHer brother nodded. He wanted to be just like Maya someday.",
+ questions:[
+  {type:"literal",   text:"What was wrong with the fan?",
+   opts:["It was too old","One blade was bent and the screws were loose","It was too hot","The cord was broken"], ans:1,
+   explain:"Maya found that one blade was bent and the base had loose screws."},
+  {type:"inference", text:"What can you infer about Maya based on her actions?",
+   opts:["She was careless","She was patient and thought like an engineer","She was very lucky","She had fixed fans before"], ans:1,
+   explain:"Maya observed carefully, got the right tool, and fixed it step by step — she thinks like an engineer."},
+  {type:"vocab",     text:"What does 'wobble' mean?",
+   opts:["To spin very fast","To make loud music","To move unsteadily from side to side","To stop working"], ans:2,
+   explain:"Wobble means to move unsteadily. The bent blade made the fan rock back and forth."},
+  {type:"inference", text:"Why does Maya say engineers observe, think, then fix?",
+   opts:["Because fixing is the most fun part","Because guessing can make problems worse","Because tools are dangerous","Because her teacher told her to"], ans:1,
+   explain:"If you jump to fixing without observing and thinking first, you might miss the real problem."},
+  {type:"main-idea", text:"What lesson does this story teach?",
+   opts:["Fans are easy to break","Hot weather is dangerous","Good problem-solving means looking carefully before acting","Maya is better than her brother"], ans:2,
+   explain:"The story shows that careful observation and thinking before acting leads to successful solutions."}
+ ]},
+{id:2,rank:0,len:"short",title:"Raindrop Journey",theme:"Science",
+ vocab:[{w:"evaporate",d:"to turn from water into invisible vapor in the air"},{w:"cycle",d:"a series of events that repeat over and over"}],
+ text:"A little raindrop fell from a cloud and landed in a puddle.\n\nThe sun came out and warmed the puddle. Slowly, the raindrop began to <span class=\"vword\" data-def=\"to turn from water into invisible vapor in the air\">evaporate</span>. It floated up, up, up into the sky.\n\nHigh above, it joined millions of other droplets and became part of a cloud again.\n\nThis is called the water <span class=\"vword\" data-def=\"a series of events that repeat over and over\">cycle</span>.\n\nWater never disappears. It just changes and travels.",
+ questions:[
+  {type:"literal",   text:"Where did the raindrop land?",
+   opts:["In a river","In a puddle","On a leaf","On the road"], ans:1,
+   explain:"The raindrop fell from a cloud and landed in a puddle."},
+  {type:"inference", text:"What will most likely happen after the raindrop becomes part of a cloud?",
+   opts:["It will disappear forever","It will fall as rain again someday","It will float to space","It will become ice right away"], ans:1,
+   explain:"The story says the cycle repeats, so the raindrop will eventually fall as rain again."},
+  {type:"vocab",     text:"What does 'evaporate' mean?",
+   opts:["To fall from the sky","To freeze into ice","To turn from water into vapor in the air","To sink underground"], ans:2,
+   explain:"Evaporate means water heats up and turns into invisible vapor. That is how the puddle disappeared."},
+  {type:"main-idea", text:"What is the main message of this story?",
+   opts:["Rain is dangerous","Water travels in a cycle and never truly disappears","Puddles dry up in summer","Clouds are made of ice"], ans:1,
+   explain:"The water cycle is the big idea. Water keeps moving and changing form between rain, puddle, vapor, and cloud."}
+ ]},
+{id:3,rank:0,len:"long",title:"The Robot Who Learned to Ask",theme:"Technology",
+ vocab:[{w:"sensor",d:"a device that detects things like light heat or sound"},{w:"error",d:"a mistake that causes something to go wrong"}],
+ text:"Bolt was a small robot in a big classroom. He had <span class=\"vword\" data-def=\"a device that detects light heat or sound\">sensors</span> for eyes and a speaker for a mouth.\n\nEvery day, Bolt tried to do things perfectly. But one morning, he bumped into a desk and knocked over a water bottle.\n\n\"<span class=\"vword\" data-def=\"a mistake that causes something to go wrong\">Error</span>! Error!\" Bolt said.\n\nA girl named Priya knelt down. \"It is okay, Bolt. Everyone makes mistakes.\"\n\n\"But I am supposed to be perfect,\" Bolt said.\n\n\"Nobody is perfect,\" Priya said. \"Even engineers make mistakes. That is why they test things over and over. Each mistake teaches you something.\"\n\nBolt thought about this. \"So I should learn from my error?\"\n\n\"Exactly,\" Priya smiled. \"Next time, ask for help when you are not sure.\"\n\nFrom that day on, Bolt started asking questions instead of guessing. He made fewer mistakes. And he made a very good friend.\n\nThe best engineers, Bolt discovered, are never afraid to ask.",
+ questions:[
+  {type:"literal",   text:"What mistake did Bolt make?",
+   opts:["He forgot to charge","He bumped a desk and knocked over a water bottle","He broke a computer","He said something unkind"], ans:1,
+   explain:"Bolt bumped into a desk and knocked over a student's water bottle."},
+  {type:"inference", text:"Why do you think Bolt said Error! Error! after the accident?",
+   opts:["He was angry","He thought making a mistake meant he was broken","He was calling for help","He was making a joke"], ans:1,
+   explain:"Bolt believed he was supposed to be perfect, so any mistake felt like a system failure to him."},
+  {type:"inference", text:"What does Priya believe about mistakes?",
+   opts:["Mistakes should be avoided at all costs","Mistakes mean you are not smart","Mistakes are how we learn and improve","Mistakes should be hidden"], ans:2,
+   explain:"Priya said engineers test things over and over because each mistake teaches something valuable."},
+  {type:"vocab",     text:"What does the word 'sensor' mean?",
+   opts:["A type of robot body","A device that detects things like light or sound","A mistake in a program","A kind of speaker"], ans:1,
+   explain:"A sensor detects information from the environment, like Bolt's sensor eyes that help him see."},
+  {type:"main-idea", text:"What is the main lesson of this story?",
+   opts:["Robots should not be in classrooms","Asking questions and learning from mistakes makes you better","Perfect robots are the best","Priya is a robot expert"], ans:1,
+   explain:"The story shows that asking for help and learning from errors is what makes someone truly great."}
+ ]},
+{id:4,rank:1,len:"short",title:"Why the Sky is Blue",theme:"Science",
+ vocab:[{w:"scatter",d:"to spread light in many different directions"},{w:"wavelength",d:"the size of a light wave — different sizes make different colors"}],
+ text:"Have you ever wondered why the sky is blue?\n\nSunlight looks white, but it is actually made of all the colors of the rainbow. When sunlight enters the air, tiny particles <span class=\"vword\" data-def=\"to spread light in many different directions\">scatter</span> the light.\n\nBlue light has the shortest <span class=\"vword\" data-def=\"the size of a light wave — different sizes make different colors\">wavelength</span>. Short waves scatter the most. So blue light bounces all around the sky.\n\nThat is why wherever you look up, you see blue!",
+ questions:[
+  {type:"literal",   text:"What color of light scatters the most?",
+   opts:["Red","Yellow","Green","Blue"], ans:3,
+   explain:"Blue light has the shortest wavelength, which makes it scatter the most across the sky."},
+  {type:"inference", text:"What can you infer about why sunsets look orange and red?",
+   opts:["The sun gets hotter at night","The air disappears at night","Sunlight travels through more air so blue scatters away leaving orange and red","The clouds turn orange"], ans:2,
+   explain:"At sunset light travels through much more atmosphere. Blue scatters away completely, leaving the longer red and orange waves visible."},
+  {type:"vocab",     text:"What does the word 'scatter' mean in this story?",
+   opts:["To collect together","To fall straight down","To spread light in many different directions","To block light completely"], ans:2,
+   explain:"Scatter means to spread out in many directions. The tiny air particles spread blue light across the whole sky."},
+  {type:"main-idea", text:"What is this passage mostly explaining?",
+   opts:["How to make a rainbow","Why sunsets are colorful","Why the sky appears blue based on how light scatters","Why space is dark"], ans:2,
+   explain:"The main point is explaining why the sky is blue. Blue light has the shortest wavelength and scatters the most."}
+ ]},
+{id:5,rank:1,len:"long",title:"The Old Lighthouse",theme:"History",
+ vocab:[{w:"beacon",d:"a light used to guide or warn people from far away"},{w:"treacherous",d:"very dangerous especially in a hidden way"}],
+ text:"One hundred years ago, a lighthouse keeper named Eliza lived alone on a rocky island. Every night, she lit the giant lamp at the top of the lighthouse.\n\nThe waters around the island were <span class=\"vword\" data-def=\"very dangerous especially in a hidden way\">treacherous</span>. Hidden rocks lurked just below the surface. Without the lighthouse <span class=\"vword\" data-def=\"a light used to guide or warn people from far away\">beacon</span>, ships would crash.\n\nOne night a winter storm blew out the lighthouse lamp. A ship was heading straight for the rocks.\n\nEliza grabbed every lantern in the lighthouse and hung them along the cliff edge one by one, creating a line of light.\n\nThe ship captain saw the glowing line and steered away from danger.\n\nThe next morning the captain rowed to shore. \"Who saved us?\"\n\n\"Just someone who used what she had,\" Eliza said.\n\nEngineers and problem-solvers do not wait for perfect tools. They use what is available and they act.",
+ questions:[
+  {type:"literal",   text:"Why was the lighthouse important?",
+   opts:["It helped Eliza see at night","Its beacon warned ships away from dangerous hidden rocks","It kept the island warm","It was a tourist attraction"], ans:1,
+   explain:"The lighthouse beacon warned ships about hidden rocks below the surface that could cause a crash."},
+  {type:"inference", text:"What can you infer about Eliza from her actions?",
+   opts:["She was afraid of storms","She was calm creative and quick-thinking under pressure","She never left the lighthouse","She did not like helping ships"], ans:1,
+   explain:"When the lamp went out Eliza did not panic. She quickly found another solution using lanterns. That shows calm creative problem-solving."},
+  {type:"vocab",     text:"What does 'treacherous' mean?",
+   opts:["Very calm and peaceful","Deep and wide","Very dangerous in a hidden way","Smooth and easy to sail"], ans:2,
+   explain:"Treacherous means secretly dangerous. The hidden rocks below the surface were dangerous because you could not easily see them."},
+  {type:"inference", text:"Why does the author end with 'Engineers do not wait for perfect tools'?",
+   opts:["To say engineers are lazy","To explain that you must use what is available and act fast","To say Eliza was not a real engineer","To make the story longer"], ans:1,
+   explain:"The author connects Eliza's quick thinking to engineering. A key skill is solving problems with what you have, not waiting for perfect conditions."},
+  {type:"main-idea", text:"What is the main idea of this story?",
+   opts:["Lighthouses are old and outdated","Storms are dangerous for ships","Creative problem-solving with available resources can save lives","Eliza wanted to be famous"], ans:2,
+   explain:"The story shows that resourceful fast-thinking people use what they have to solve problems even in a crisis."}
+ ]},
+{id:6,rank:1,len:"short",title:"Ants: Nature Engineers",theme:"Animals",
+ vocab:[{w:"tunnel",d:"a long underground passage dug through soil"},{w:"colony",d:"a large group of the same animal living and working together"}],
+ text:"Ants are some of the world's best engineers. A single ant <span class=\"vword\" data-def=\"a large group living and working together\">colony</span> can dig a network of <span class=\"vword\" data-def=\"a long underground passage dug through soil\">tunnels</span> stretching hundreds of feet underground.\n\nAnts work as a team. Each ant has a job. Some dig. Some carry soil out. Others guard the entrance.\n\nTheir tunnels have rooms for sleeping, eating, and raising babies. Some tunnels even have vents — tiny holes that let in fresh air.\n\nEngineers design buildings the same way — carefully planning every room and passageway. The ant figured it out millions of years before we did!",
+ questions:[
+  {type:"literal",   text:"What do some tunnels in ant colonies have for fresh air?",
+   opts:["Windows","Fans","Vents (tiny holes)","Open doors"], ans:2,
+   explain:"The story says some tunnels have vents — tiny holes that let in fresh air, just like ventilation in buildings."},
+  {type:"inference", text:"What can you infer about why ants have different jobs?",
+   opts:["Ants fight over who works","Each ant doing one job makes the whole colony faster and better","Some ants are lazy","Ants take turns guessing what to do"], ans:1,
+   explain:"When each ant has a specific job the whole team works efficiently. Engineers call this division of labor."},
+  {type:"vocab",     text:"What is a 'colony' in this story?",
+   opts:["An ant queen","A type of tunnel","A large group of the same animal living and working together","A room underground"], ans:2,
+   explain:"A colony is a large group living and working together. An ant colony can have millions of ants all doing different jobs."},
+  {type:"main-idea", text:"What is the main point of this passage?",
+   opts:["Ants are dangerous insects","Ants build tunnels for no reason","Ants are natural engineers who build complex well-planned structures","Tunnels are difficult to build"], ans:2,
+   explain:"The passage shows that ants engineer sophisticated structures with rooms passages and ventilation, just like human engineers."}
+ ]},
+{id:7,rank:1,len:"long",title:"The River Builder",theme:"Geography",
+ vocab:[{w:"erosion",d:"when water slowly wears away and carries off soil or rock"},{w:"deposit",d:"to drop and leave material like soil or sand in a new place"}],
+ text:"The river did not look like a builder. It looked brown and muddy. But rivers are some of the greatest engineers on Earth.\n\nAs a river flows, it picks up tiny bits of soil and rock. This is called <span class=\"vword\" data-def=\"when water slowly wears away and carries off soil or rock\">erosion</span>. The water carries these bits for miles.\n\nWhen the river slows down — where it bends or meets the ocean — it <span class=\"vword\" data-def=\"to drop and leave material like soil or sand in a new place\">deposits</span> that soil. Over thousands of years these deposits build up into new land called a delta.\n\nThe Nile River Delta in Egypt is one of the most famous. It was built grain by grain over millions of years.\n\nErosion also carves canyons. The Colorado River carved the Grand Canyon — one mile deep — over five million years.\n\nNature engineers slowly. But the results last forever.",
+ questions:[
+  {type:"literal",   text:"What is erosion?",
+   opts:["When rivers flood over banks","When water slowly wears away soil or rock","When a river stops flowing","When sand turns into rock"], ans:1,
+   explain:"Erosion is when water slowly wears away and carries off soil and rock as rivers flow."},
+  {type:"inference", text:"Why did the Grand Canyon take 5 million years to form?",
+   opts:["The Colorado River was slow","The rock was very hard and erosion works slowly but steadily","Humans helped carve it","It only recently became deep"], ans:1,
+   explain:"Erosion is a slow process. Hard rock takes millions of years to carve through, but the results are spectacular."},
+  {type:"vocab",     text:"What does 'deposit' mean in this story?",
+   opts:["To pick up soil from a riverbed","To carve through rock","To drop and leave material like soil in a new place","To flood a town"], ans:2,
+   explain:"Deposit means to drop and leave material somewhere. Rivers deposit soil where they slow down, building new land over time."},
+  {type:"inference", text:"The author says 'Nature engineers slowly.' What does this mean?",
+   opts:["Nature makes mistakes","Nature builds things over very long periods of time, just like engineers plan carefully","Nature is lazy","Nature uses machines"], ans:1,
+   explain:"The author compares natural processes to engineering. Both require patience and gradual work to build something lasting."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Rivers are dangerous and cause floods","Rivers are natural engineers that shape the land through erosion and deposits","The Grand Canyon is in Colorado","All rivers flow to the ocean"], ans:1,
+   explain:"Rivers like engineers slowly and patiently reshape the Earth through erosion and deposits, building canyons and deltas over millions of years."}
+ ]},
+{id:8,rank:2,len:"short",title:"The First Flight",theme:"History",
+ vocab:[{w:"glide",d:"to move smoothly through the air without an engine"},{w:"lift",d:"the upward force that keeps a flying object in the air"}],
+ text:"Orville and Wilbur Wright were bicycle repairmen — not scientists. But they had a dream: to build a flying machine.\n\nThey studied birds. They watched how wings curved. They built gliders that could <span class=\"vword\" data-def=\"to move smoothly through the air without an engine\">glide</span> down hillsides.\n\nOn December 17, 1903, their machine created enough <span class=\"vword\" data-def=\"the upward force that keeps a flying object in the air\">lift</span> to leave the ground. Orville flew 120 feet in 12 seconds.\n\nIt was the first time in history a powered airplane flew.\n\nThey succeeded because they observed, experimented, failed, learned — and tried again.",
+ questions:[
+  {type:"literal",   text:"What jobs did the Wright Brothers have before building airplanes?",
+   opts:["Scientists and pilots","Farmers and inventors","Bicycle repairmen","Teachers and engineers"], ans:2,
+   explain:"Orville and Wilbur Wright were bicycle repairmen — not trained scientists — before they built the first airplane."},
+  {type:"inference", text:"Why do you think the Wright Brothers studied birds?",
+   opts:["They liked animals","Birds had already solved flight so studying them was a smart starting point","They thought birds could teach them to speak","Their teacher told them to"], ans:1,
+   explain:"Birds have been flying for millions of years. Smart engineers learn from nature!"},
+  {type:"vocab",     text:"What does 'lift' mean in this story?",
+   opts:["To pick something up by hand","The upward force that keeps a flying object in the air","A type of engine","The speed of a plane"], ans:1,
+   explain:"Lift is the upward force that works against gravity to keep an aircraft in the air."},
+  {type:"main-idea", text:"What is the main lesson of the Wright Brothers story?",
+   opts:["You need expensive equipment to succeed","Only scientists can invent things","Observing experimenting failing and trying again leads to breakthroughs","Bicycles and airplanes are similar"], ans:2,
+   explain:"The Wright Brothers succeeded through careful observation, many experiments, learning from failures, and persistence."}
+ ]},
+{id:9,rank:2,len:"long",title:"Journey to the Deep",theme:"Ocean Science",
+ vocab:[{w:"pressure",d:"the force pushing on something from all sides"},{w:"submersible",d:"a small vehicle built to operate underwater"}],
+ text:"The deepest place in the ocean is called the Mariana Trench. It is nearly 7 miles deep. Down there the <span class=\"vword\" data-def=\"the force pushing on something from all sides\">pressure</span> is so strong it would crush a car like a paper cup.\n\nTo explore such places engineers designed special vehicles called <span class=\"vword\" data-def=\"a small vehicle built to operate underwater\">submersibles</span>. Their hulls are made from thick titanium or ceramic — materials that resist crushing pressure.\n\nIn 1960, two explorers descended in a submersible called the Trieste. They reached the bottom — almost 36,000 feet down. Outside the window they saw a tiny flatfish swimming. Life existed even there.\n\nToday robotic submersibles with cameras explore the deep ocean. They have found creatures that glow, animals that have never seen sunlight, and volcanic vents that heat water to hundreds of degrees.\n\nWe have mapped less than 20% of the deep ocean. Most of our own planet is still a mystery.\n\nFor engineers and scientists, that means one thing: there is still so much left to explore.",
+ questions:[
+  {type:"literal",   text:"How deep is the Mariana Trench?",
+   opts:["About 1 mile","About 3 miles","Nearly 7 miles","About 36 feet"], ans:2,
+   explain:"The passage says the Mariana Trench is nearly 7 miles deep — the deepest place in the ocean."},
+  {type:"inference", text:"Why would engineers choose titanium or ceramic for submersible hulls?",
+   opts:["They are cheap","They are colorful","They resist the extreme crushing pressure of the deep ocean","They are easy to shape"], ans:2,
+   explain:"At extreme depths pressure would crush most materials. Titanium and ceramic are chosen because they withstand that force."},
+  {type:"vocab",     text:"What is a 'submersible'?",
+   opts:["A submarine sandwich","An underwater robot with no windows","A small vehicle designed to operate underwater","A deep ocean creature"], ans:2,
+   explain:"A submersible is a specially-engineered small vehicle built to go underwater for exploration and research."},
+  {type:"inference", text:"What can you infer from the fact that we have mapped less than 20% of the deep ocean?",
+   opts:["The ocean is too small to matter","Deep ocean exploration is easy","There are likely many more discoveries waiting to be made","Scientists have given up exploring"], ans:2,
+   explain:"If only 20% is mapped then 80% remains unknown — meaning countless more discoveries are almost certainly waiting to be found."},
+  {type:"main-idea", text:"What is the main point of this passage?",
+   opts:["The ocean is dangerous and should be avoided","Engineers designed amazing vehicles to explore the deep ocean and most of it remains unknown","Flatfish live at the bottom","Robotic cameras are better than human explorers"], ans:1,
+   explain:"The passage shows how engineering made deep ocean exploration possible while pointing out that most of the ocean remains unexplored."}
+ ]},
+{id:10,rank:2,len:"short",title:"Electricity's Path",theme:"Physics",
+ vocab:[{w:"circuit",d:"a complete loop that electricity flows through"},{w:"conductor",d:"a material that lets electricity pass through it easily"}],
+ text:"Electricity needs a path. Without a complete loop — called a <span class=\"vword\" data-def=\"a complete loop that electricity flows through\">circuit</span> — electricity cannot flow and a light will not glow.\n\nSome materials let electricity pass through easily. These are called <span class=\"vword\" data-def=\"a material that lets electricity pass through it easily\">conductors</span>. Copper wire is a great conductor.\n\nOther materials block electricity. These are called insulators. Rubber and plastic are insulators — that is why wires are wrapped in them for safety.\n\nEvery device you plug in uses a circuit. Understanding circuits is one of the first things electrical engineers learn.",
+ questions:[
+  {type:"literal",   text:"Why is copper used for wires?",
+   opts:["It is cheap","It is colorful","It is a great conductor of electricity","It is very strong"], ans:2,
+   explain:"Copper is an excellent conductor — it lets electricity pass through easily, making it perfect for wires."},
+  {type:"inference", text:"Why are wires wrapped in rubber or plastic?",
+   opts:["To look nice","To keep them from getting wet","To prevent electricity from escaping and causing shocks or fires","To make them stronger"], ans:2,
+   explain:"Rubber and plastic are insulators that block electricity, protecting people from getting shocked."},
+  {type:"vocab",     text:"What is a 'circuit'?",
+   opts:["A type of wire","A complete loop that electricity flows through","A material that blocks electricity","A kind of battery"], ans:1,
+   explain:"A circuit is a complete loop. Electricity must flow in an unbroken loop to power a device."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Electricity is dangerous","Copper is the best metal","Understanding circuits and conductors is key to how electrical devices work","Rubber is an important material"], ans:2,
+   explain:"The passage explains circuits, conductors, and insulators — the building blocks of electrical engineering."}
+ ]},
+{id:11,rank:2,len:"long",title:"Grace Hopper: Computer Pioneer",theme:"Computer Science",
+ vocab:[{w:"algorithm",d:"a set of step-by-step instructions for solving a problem"},{w:"debug",d:"to find and fix errors in a computer program"}],
+ text:"Grace Hopper was born in 1906. When she was young, computers did not exist. By the time she grew up, they filled entire rooms.\n\nGrace became a programmer. She wrote <span class=\"vword\" data-def=\"step-by-step instructions for solving a problem\">algorithms</span> — sets of instructions that told computers exactly what to do.\n\nOne day in 1947, a computer stopped working. Grace and her team found a real moth stuck inside. It was causing errors. They removed the moth and taped it into their logbook with the note: First actual bug found.\n\nThat is where the word bug in computers came from. And fixing computer problems is still called <span class=\"vword\" data-def=\"to find and fix errors in a computer program\">debugging</span>.\n\nGrace also helped create one of the first programming languages called COBOL. It helped businesses use computers for the first time.\n\nShe believed computers should be easy for everyone — not just math experts. A ship in harbor is safe, she once said, but that is not what ships are built for.\n\nGrace Hopper showed that the best engineers are also great teachers.",
+ questions:[
+  {type:"literal",   text:"What was the first actual bug Grace Hopper's team found?",
+   opts:["A software virus","A broken wire","A real moth stuck inside the computer","A loose screw"], ans:2,
+   explain:"Grace's team literally found a real moth stuck inside the computer causing errors and taped it into their logbook."},
+  {type:"inference", text:"What did Grace believe about who should use computers?",
+   opts:["Only scientists and math experts","Only people who understand circuits","Everyone — computers should be accessible to all","Only people who build them"], ans:2,
+   explain:"Grace created COBOL to help businesses use computers and believed they should be accessible to everyone."},
+  {type:"vocab",     text:"What does 'algorithm' mean?",
+   opts:["A type of computer bug","A set of step-by-step instructions for solving a problem","A programming language","A computer error message"], ans:1,
+   explain:"An algorithm is a step-by-step set of instructions — like a recipe for a computer to follow."},
+  {type:"inference", text:"Grace said 'A ship in harbor is safe but that is not what ships are built for.' What does this mean?",
+   opts:["Ships should stay near shore","Playing it safe and never trying new things means missing your purpose","Ships are dangerous in the ocean","Grace was a sailor"], ans:1,
+   explain:"Grace was saying that playing it safe and never taking risks means you never discover what you are truly capable of."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Computers used to be very big","Moths caused problems for early computers","Grace Hopper was a pioneering engineer who made computers accessible and left a lasting legacy","COBOL is the best programming language"], ans:2,
+   explain:"The passage is about Grace Hopper's pioneering contributions to computer science — algorithms, debugging, and making computers accessible."}
+ ]},
+{id:12,rank:3,len:"short",title:"How Bridges Stay Up",theme:"Engineering",
+ vocab:[{w:"tension",d:"a pulling or stretching force"},{w:"compression",d:"a pushing or squeezing force"}],
+ text:"Every bridge deals with two invisible forces: <span class=\"vword\" data-def=\"a pulling or stretching force\">tension</span> and <span class=\"vword\" data-def=\"a pushing or squeezing force\">compression</span>.\n\nCompression pushes inward — like squeezing a sponge. Tension pulls outward — like stretching a rubber band.\n\nIn a suspension bridge, giant cables hang from tall towers. The cables are under tension — pulled tight. Those tight cables hold the roadway up.\n\nIn an arch bridge, the arch is under compression. The curve spreads the pushing force into the ground on each side.\n\nEngineers choose the right design for each situation. Understanding these forces is how bridges stay up for hundreds of years.",
+ questions:[
+  {type:"literal",   text:"What force are suspension bridge cables under?",
+   opts:["Compression","Gravity","Tension","Wind force"], ans:2,
+   explain:"Suspension bridge cables are pulled tight — that means they are under tension, a pulling and stretching force."},
+  {type:"inference", text:"Why is an arch good at spreading force?",
+   opts:["It is the prettiest design","The curve naturally directs pushing forces sideways into the ground","Arches are made of stronger material","Arches are easier to build"], ans:1,
+   explain:"An arch's curved shape redirects compression along the curve and into the ground on both sides, making it very stable."},
+  {type:"vocab",     text:"What is 'compression'?",
+   opts:["A pulling or stretching force","A type of bridge design","A pushing or squeezing force","The weight of a bridge"], ans:2,
+   explain:"Compression is a pushing or squeezing force — like when you squeeze clay or compress a spring."},
+  {type:"main-idea", text:"What is this passage mainly about?",
+   opts:["Why bridges fall down","How suspension bridges were invented","Tension and compression — the two forces bridges are designed around","Why arch bridges are better"], ans:2,
+   explain:"The passage explains that all bridges are engineered around two forces — tension and compression — and different bridge designs use these forces differently."}
+ ]},
+{id:13,rank:3,len:"long",title:"Mission to Mars",theme:"Space",
+ vocab:[{w:"orbit",d:"the curved path one object takes as it travels around another in space"},{w:"atmosphere",d:"the layer of gases surrounding a planet"}],
+ text:"Mars is about 140 million miles from Earth. Getting there takes about seven months.\n\nLanding on Mars is one of the hardest engineering problems ever solved. Mars has an <span class=\"vword\" data-def=\"the layer of gases surrounding a planet\">atmosphere</span> — but it is very thin. Too thin for parachutes alone. Too thick to ignore.\n\nEngineers designed a special landing system. A spacecraft entered the atmosphere at 12,000 miles per hour. First, a heat shield absorbed the heat. Then a giant parachute opened. Then a rocket-powered crane lowered the rover gently to the ground.\n\nThis was called the Seven Minutes of Terror because it happened too fast for NASA to control from Earth. By the time engineers heard a signal, the landing was already over.\n\nThe Curiosity rover landed in 2012. Perseverance landed in 2021. Both have sent back thousands of images from another world.\n\nEvery piece of information brings us one step closer to understanding Mars — and one day, perhaps, sending humans there.\n\nThe engineers who built the rovers never got to Mars. But their machines did.",
+ questions:[
+  {type:"literal",   text:"Why is landing on Mars so difficult?",
+   opts:["Mars is too far away","Mars has no gravity","Mars's atmosphere is too thin for parachutes alone but too thick to ignore","Mars is too hot to land on"], ans:2,
+   explain:"Mars's thin atmosphere creates a hard problem — not enough air to slow a spacecraft fully but enough air to create dangerous heat during entry."},
+  {type:"inference", text:"Why was the landing called 'Seven Minutes of Terror'?",
+   opts:["It was scary to watch on TV","The landing happened faster than Earth could receive and respond so engineers had no control","The rover almost crashed","Seven engineers were responsible"], ans:1,
+   explain:"The signal delay between Mars and Earth meant the landing was finished before engineers heard about it. The machine had to succeed on its own."},
+  {type:"vocab",     text:"What is an 'orbit' in this passage?",
+   opts:["A type of spacecraft","The curved path one object takes as it travels around another in space","A NASA mission name","The distance between two planets"], ans:1,
+   explain:"An orbit is the curved path a planet or spacecraft takes as it moves around another object."},
+  {type:"inference", text:"What can you infer about the engineers who built the Mars rovers?",
+   opts:["They wanted personal fame","They were focused on the mission's success not personal glory","They wanted to go to Mars instead","They did not think the rovers would work"], ans:1,
+   explain:"The passage ends with 'the engineers never got to Mars but their machines did.' This shows engineers motivated by the mission itself not recognition."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Mars is too dangerous for humans","NASA made mistakes landing rovers","Extraordinary engineering solved the problem of landing on Mars advancing our exploration of another planet","Curiosity and Perseverance are the best robots ever"], ans:2,
+   explain:"The passage focuses on the incredible engineering required to successfully land rovers on Mars and what those missions mean for exploration."}
+ ]},
+{id:14,rank:3,len:"short",title:"Wind Power",theme:"Energy",
+ vocab:[{w:"turbine",d:"a machine with blades that spin to generate energy"},{w:"renewable",d:"an energy source that will not run out"}],
+ text:"Wind is free. It blows across mountains, plains, and oceans. For thousands of years people used it to grind grain in windmills.\n\nToday engineers have turned wind into electricity using <span class=\"vword\" data-def=\"a machine with blades that spin to generate energy\">turbines</span>. Wind spins the blades. The spinning creates electricity.\n\nWind energy is <span class=\"vword\" data-def=\"an energy source that will not run out\">renewable</span> — the wind will never run out. It creates no pollution.\n\nWind farms — fields of hundreds of turbines — now power entire cities.\n\nThe challenge for engineers: the wind does not always blow. Storing energy for calm days is the next big problem to solve.",
+ questions:[
+  {type:"literal",   text:"How does a wind turbine make electricity?",
+   opts:["It burns fuel","Wind spins the blades which creates electricity","It uses solar panels","It stores energy from rain"], ans:1,
+   explain:"Wind turns the turbine's blades and that spinning motion is converted into electrical energy."},
+  {type:"inference", text:"What engineering challenge still needs solving?",
+   opts:["Building taller turbines","Making blades that last longer","Storing wind energy for days when there is no wind","Making turbines look better"], ans:2,
+   explain:"The passage says the wind does not always blow and storing energy for calm days is the next big problem to solve."},
+  {type:"vocab",     text:"What does 'renewable' mean?",
+   opts:["Something that can be recycled","An energy source that will not run out","Energy made from burning fuel","Something that is very powerful"], ans:1,
+   explain:"Renewable means it naturally replenishes. Wind keeps blowing and unlike oil or gas it will not be used up."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Windmills are very old machines","Wind turbines are useful but ugly","Wind energy is a powerful renewable resource but storing it for calm days remains a challenge","Wind farms should be built everywhere"], ans:2,
+   explain:"The passage explains wind energy's benefits while honestly pointing out the remaining engineering challenge — energy storage when the wind does not blow."}
+ ]},
+{id:15,rank:3,len:"long",title:"The Patient Inventor",theme:"Inventors",
+ vocab:[{w:"patent",d:"an official document giving an inventor the sole right to their invention"},{w:"persist",d:"to keep trying even when things are difficult"}],
+ text:"Thomas Edison is famous for inventing the lightbulb. But he did not succeed on the first try. Or the hundredth. Or the thousandth.\n\nEdison tried over 1,000 different materials before he found one that worked — a carbonized bamboo fiber. When a reporter asked if he felt like a failure after 1,000 attempts, Edison said: I did not fail. I found 1,000 ways that did not work.\n\nThis is the engineering mindset. Failure is information. Every failed test teaches you something. The question is whether you <span class=\"vword\" data-def=\"to keep trying even when things are difficult\">persist</span> long enough to use what you learned.\n\nEdison also built an entire laboratory with a team of engineers and scientists. They worked together sharing ideas and experiments. He called it his invention factory.\n\nHe held over 1,000 <span class=\"vword\" data-def=\"an official document giving an inventor the sole right to their invention\">patents</span> in his lifetime.\n\nBehind every invention was not a single genius moment. It was months — sometimes years — of careful disciplined work.\n\nGenius, Edison once said, is one percent inspiration and ninety-nine percent perspiration.\n\nFor any engineer, that is a lesson worth remembering.",
+ questions:[
+  {type:"literal",   text:"What material did Edison finally use to make a working lightbulb?",
+   opts:["Copper wire","Glass fiber","Carbonized bamboo fiber","Iron filament"], ans:2,
+   explain:"After more than 1,000 attempts Edison found that carbonized bamboo fiber worked as a filament."},
+  {type:"inference", text:"What does Edison's quote 'I found 1,000 ways that did not work' reveal about his mindset?",
+   opts:["He was trying to make people feel sorry for him","He viewed each failure as useful data not a defeat","He was bragging about hard work","He wanted to stop trying"], ans:1,
+   explain:"Edison reframed failure as discovery. Each attempt taught him what did not work, bringing him closer to what did. That is a powerful engineering mindset."},
+  {type:"vocab",     text:"What is a 'patent'?",
+   opts:["A type of laboratory equipment","An official document giving an inventor the sole right to their invention","A scientific experiment","A kind of electrical wire"], ans:1,
+   explain:"A patent protects an inventor's rights — it officially recognizes them as the creator and prevents others from copying the invention."},
+  {type:"inference", text:"Why do you think Edison built a team laboratory instead of working alone?",
+   opts:["He was lonely","Inventions require many skills and ideas — a team generates more possibilities than one person","He needed people to clean his lab","The government required it"], ans:1,
+   explain:"Complex inventions need many different types of knowledge. A team can try more approaches, catch errors, and combine different skills."},
+  {type:"main-idea", text:"What is the main lesson Edison's story teaches?",
+   opts:["Lightbulbs were a very important invention","Being a genius means instant success","Persistence teamwork and treating failure as information are the true keys to invention","Edison was the greatest inventor ever"], ans:2,
+   explain:"The passage focuses on the process behind Edison's success — persistence through failure, collaboration, and disciplined work."}
+ ]},
+{id:16,rank:4,len:"short",title:"Your Body's Defense System",theme:"Biology",
+ vocab:[{w:"immune",d:"protected from a disease or harmful thing"},{w:"antibody",d:"a protein made by your body to fight off germs"}],
+ text:"Your body is its own engineer. When a germ enters you, your immune system springs into action.\n\nWhite blood cells detect the invader. They send out tiny proteins called <span class=\"vword\" data-def=\"a protein made by your body to fight off germs\">antibodies</span>. Antibodies attach to the germ like a lock fitting a key — and mark it for destruction.\n\nAfter you fight off a sickness, your body remembers the germ. Next time it appears, you are ready. You have become <span class=\"vword\" data-def=\"protected from a disease or harmful thing\">immune</span>.\n\nVaccines use this same system — they teach your body to recognize a germ before you are ever exposed to it.\n\nYour body has been engineering its own defenses since the day you were born.",
+ questions:[
+  {type:"literal",   text:"What do antibodies do?",
+   opts:["They carry oxygen in the blood","They protect your skin","They attach to germs and mark them for destruction","They make you feel sick"], ans:2,
+   explain:"Antibodies are proteins that attach to invading germs like a lock and key, marking them so the immune system can destroy them."},
+  {type:"inference", text:"Why do vaccines work without making you fully sick?",
+   opts:["They are made from healthy food","Vaccines contain a safe version of a germ that teaches your body to recognize it without causing real illness","Vaccines prevent all diseases permanently","Vaccines make antibodies for you"], ans:1,
+   explain:"Vaccines train your immune system by introducing something the body can recognize as a threat — but in a safe form."},
+  {type:"vocab",     text:"What does 'immune' mean?",
+   opts:["Very sick with a disease","Protected from a disease or harmful thing","Unable to fight germs","Having many white blood cells"], ans:1,
+   explain:"Immune means your body is protected — it has learned to fight off a specific germ quickly if it encounters it again."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Vaccines are the most important medicine","White blood cells are bigger than red blood cells","Your body has a sophisticated built-in defense system that learns and adapts like an engineer","Getting sick is how you become immune"], ans:2,
+   explain:"The passage describes your immune system as an engineering system — it detects, responds, adapts, and remembers."}
+ ]},
+{id:17,rank:4,len:"long",title:"The Science of Strong Materials",theme:"Engineering",
+ vocab:[{w:"alloy",d:"a metal made by mixing two or more metals together"},{w:"flexible",d:"able to bend without breaking"}],
+ text:"Steel changed the world. Before it, tall buildings were impossible — stone and wood could only go so high before collapsing under their own weight.\n\nSteel is an <span class=\"vword\" data-def=\"a metal made by mixing two or more metals together\">alloy</span> — a mix of iron and a small amount of carbon. Adding just 1 to 2 percent carbon makes iron dramatically stronger.\n\nBut strength alone is not enough. Engineers also need materials that are <span class=\"vword\" data-def=\"able to bend without breaking\">flexible</span>. Pure strength that cannot bend will shatter. Think of glass — very hard, but one sharp impact and it shatters.\n\nThe Golden Gate Bridge uses cables made from steel. Each cable contains thousands of individual steel wires twisted together. The bridge can sway 27 feet in strong winds — because flexibility keeps it from breaking.\n\nModern engineers now combine materials: carbon fiber mixed with resin creates something lighter than aluminum but stronger than steel. It is used in airplanes, racing cars, and even prosthetic limbs.\n\nThe search for better materials — stronger, lighter, more flexible — is one of the most exciting frontiers in engineering today.",
+ questions:[
+  {type:"literal",   text:"What is steel made of?",
+   opts:["Copper and iron","Iron and a small amount of carbon","Aluminum and carbon fiber","Iron and rubber"], ans:1,
+   explain:"Steel is an alloy — a mixture of iron and a small amount of carbon that dramatically increases strength."},
+  {type:"inference", text:"Why can the Golden Gate Bridge sway 27 feet without breaking?",
+   opts:["It is very wide","It is made of the strongest steel ever","Its flexibility prevents it from shattering under wind force","Engineers made a design mistake"], ans:2,
+   explain:"Flexibility keeps the bridge from breaking. Steel cables can sway without snapping — flexibility prevents rigid materials from shattering."},
+  {type:"vocab",     text:"What does 'flexible' mean?",
+   opts:["Very heavy and dense","Able to bend without breaking","Very expensive to produce","Hard and shatterproof"], ans:1,
+   explain:"Flexible means able to bend without breaking — like a rubber band or the steel cables of a suspension bridge."},
+  {type:"inference", text:"Why does the passage say 'strength alone is not enough'?",
+   opts:["Flexible materials are cheaper","Very strong but rigid materials like glass can shatter — both strength and flexibility are needed","Strength makes materials too heavy","Engineers prefer lightweight materials"], ans:1,
+   explain:"Glass is hard but inflexible — so a single impact shatters it. Materials need to handle both force and stress, which requires flexibility along with strength."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["Steel is the most important material ever invented","The Golden Gate Bridge is the best bridge ever built","Engineers carefully select and combine materials to balance strength flexibility and weight","Carbon fiber should replace all metals"], ans:2,
+   explain:"The passage is about how materials engineering — choosing mixing and combining materials — is fundamental to building things that work and last."}
+ ]},
+{id:18,rank:4,len:"short",title:"How AI Works",theme:"Technology",
+ vocab:[{w:"pattern",d:"a repeating arrangement that can be recognized and predicted"},{w:"predict",d:"to use information to say what will happen before it occurs"}],
+ text:"When you ask a voice assistant a question, something remarkable happens. The machine does not look up an answer in a book. It recognizes <span class=\"vword\" data-def=\"a repeating arrangement that can be recognized and predicted\">patterns</span>.\n\nIt has learned from millions and millions of sentences. It learned which words appear together often.\n\nNow when you speak, it uses those patterns to <span class=\"vword\" data-def=\"to use information to say what will happen before it occurs\">predict</span> the most helpful response.\n\nThis is called Artificial Intelligence — AI. It does not truly understand your words the way you do. But it has learned patterns so well it can seem to.\n\nEngineers who build AI systems must think carefully: what should this machine learn? And how do we make sure it stays helpful and safe?",
+ questions:[
+  {type:"literal",   text:"How does a voice assistant find its answers?",
+   opts:["It looks in an online dictionary","It calls a human expert","It recognizes patterns learned from millions of sentences","It records everything you say"], ans:2,
+   explain:"AI assistants predict responses based on patterns they learned from enormous amounts of text."},
+  {type:"inference", text:"What is a key challenge in building AI?",
+   opts:["Making the AI's voice sound nice","Making it run faster","Deciding what the AI should learn and making sure it stays helpful and safe","Making it understand every language"], ans:2,
+   explain:"The passage ends by asking what should it learn and how do we keep it safe — those are the real engineering challenges."},
+  {type:"vocab",     text:"What does 'predict' mean?",
+   opts:["To remember something from the past","To make something up randomly","To use information to say what will happen before it occurs","To listen carefully"], ans:2,
+   explain:"Predict means to use what you know to make a reasonable guess about what comes next."},
+  {type:"main-idea", text:"What is the main idea of this passage?",
+   opts:["AI is smarter than humans","Voice assistants can answer any question","AI works by recognizing patterns learned from huge amounts of data and building it responsibly is a key engineering challenge","AI assistants should be used by everyone"], ans:2,
+   explain:"The passage explains HOW AI works — pattern recognition and prediction — and raises the engineering responsibility question."}
+ ]},
+{id:19,rank:4,len:"long",title:"Kasey's Big Dream",theme:"Engineering",
+ vocab:[{w:"blueprint",d:"a detailed plan showing how something will be built"},{w:"innovate",d:"to create something new or improve something in a new way"}],
+ text:"Kasey had always loved taking things apart. Clocks, toy cars, flashlights — he wanted to see how they worked inside.\n\nWhy does this piece spin? he would ask. What happens if I connect this to that?\n\nHis grandmother gave him a library book about engineers. He read it three times.\n\nOn the last page, it said: Engineers are the people who look at the world and ask: how can I make this better?\n\nKasey read those words again. He grabbed a notebook and wrote at the top: MY <span class=\"vword\" data-def=\"a detailed plan showing how something will be built\">BLUEPRINTS</span>.\n\nHe drew a machine that could water plants automatically. He drew a better pencil case with a built-in sharpener. He drew a special ramp for his little cousin's wheelchair.\n\nNone of them were perfect. But they were his ideas. And ideas are where every invention begins.\n\nHis teacher saw the notebook. These are wonderful Kasey, she said. You have an engineer's mind.\n\nWhat does that mean? Kasey asked.\n\nIt means you do not just see problems, she said. You see possibilities. You think about how things could be — not just how they are.\n\nKasey smiled. He did not know exactly what he would build someday. But he knew he would <span class=\"vword\" data-def=\"to create something new or improve something in a new way\">innovate</span>.\n\nHe would observe. He would wonder. He would try. He would fail. He would learn.\n\nAnd he would never ever stop asking why.",
+ questions:[
+  {type:"literal",   text:"What did Kasey write at the top of his notebook?",
+   opts:["My Inventions","My Big Ideas","My Blueprints","My Engineering Plans"], ans:2,
+   explain:"After reading the engineer's book Kasey grabbed a notebook and wrote MY BLUEPRINTS at the top."},
+  {type:"inference", text:"What does the ramp Kasey drew for his cousin's wheelchair tell you about him?",
+   opts:["He likes building ramps","He thinks engineering is only useful for sports","He designs with other people's needs in mind — not just his own","He does not know how wheelchairs work"], ans:2,
+   explain:"Kasey thought about a problem someone else faces and designed a solution for them. That is empathetic engineering — one of the most important engineering qualities."},
+  {type:"vocab",     text:"What does 'innovate' mean?",
+   opts:["To copy someone else's idea","To give up when things get hard","To create something new or improve something in a new way","To follow instructions exactly"], ans:2,
+   explain:"Innovate means to create or improve — engineers innovate when they find new solutions to old problems or invent entirely new things."},
+  {type:"inference", text:"What does Kasey's teacher mean when she says 'you see possibilities'?",
+   opts:["Kasey has good eyesight","Kasey imagines how things could be improved not just how they already are","Kasey is very good at school","Kasey has memorized many inventions"], ans:1,
+   explain:"An engineering mindset looks at the world and asks how could this be better. Seeing possibilities means imagining improvements that do not exist yet."},
+  {type:"main-idea", text:"What is the main message of Kasey's story?",
+   opts:["Reading library books leads to success","Perfect blueprints make a great engineer","Curiosity empathy persistence and the drive to improve the world are what make an engineer — and Kasey already has them","Kasey will invent many famous things"], ans:2,
+   explain:"The story celebrates the mindset of an engineer — observing wondering caring about others failing and learning — and shows Kasey already has these qualities."}
+ ]}
+];
+
+var FAST_ROUNDS = [
+  {rank:0, title:"Apprentice Challenge", words:[
+    {type:"def",   word:"bridge",     def:"a structure built to cross water or a gap",       opts:["a tall building","a structure to cross water or a gap","a type of tool","a muddy path"]},
+    {type:"vowel", word:"blade",      vowel:"long-a",  opts:["short-a","long-a","short-e","long-i"]},
+    {type:"spell", word:"strong",     def:"able to hold heavy things without breaking"},
+    {type:"syl",   word:"circuit",    syl:["cir","cuit"]},
+    {type:"def",   word:"sensor",     def:"a device that detects things like light or sound", opts:["a type of robot","a device that detects things like light or sound","a kind of mirror","a computer screen"]},
+    {type:"vowel", word:"cloud",      vowel:"ou",      opts:["short-o","long-o","ou","short-u"]},
+    {type:"spell", word:"error",      def:"a mistake that causes something to go wrong"},
+    {type:"syl",   word:"evaporate",  syl:["e","vap","o","rate"]}
+  ]},
+  {rank:1, title:"Junior Challenge", words:[
+    {type:"def",   word:"erosion",    def:"when water slowly wears away soil or rock",        opts:["when rivers flood","when water wears away soil or rock","when soil gets wet","when rocks crack"]},
+    {type:"vowel", word:"glide",      vowel:"long-i",  opts:["short-i","long-i","short-e","long-e"]},
+    {type:"spell", word:"tunnel",     def:"a long underground passage"},
+    {type:"syl",   word:"algorithm",  syl:["al","go","rithm"]},
+    {type:"def",   word:"beacon",     def:"a light used to guide or warn from far away",      opts:["a type of anchor","a light used to guide or warn from far away","a lighthouse keeper","a storm warning"]},
+    {type:"vowel", word:"sprout",     vowel:"ou",      opts:["short-o","long-o","ou","long-u"]},
+    {type:"spell", word:"scatter",    def:"to spread light in many directions"},
+    {type:"syl",   word:"renewable",  syl:["re","new","a","ble"]}
+  ]},
+  {rank:2, title:"Field Engineer Challenge", words:[
+    {type:"def",   word:"tension",    def:"a pulling or stretching force",                    opts:["a pushing force","a pulling or stretching force","the weight of a bridge","a type of bridge"]},
+    {type:"vowel", word:"orbit",      vowel:"short-o", opts:["long-o","short-o","short-u","long-i"]},
+    {type:"spell", word:"pressure",   def:"the force pushing on something from all sides"},
+    {type:"syl",   word:"atmosphere", syl:["at","mos","phere"]},
+    {type:"def",   word:"conductor",  def:"a material that lets electricity pass through it", opts:["a train driver","a material that blocks electricity","a material that lets electricity pass through it","a type of wire"]},
+    {type:"vowel", word:"immune",     vowel:"long-u",  opts:["short-u","long-u","long-e","short-i"]},
+    {type:"spell", word:"turbine",    def:"a machine with blades that spin to generate energy"},
+    {type:"syl",   word:"submersible",syl:["sub","mer","si","ble"]}
+  ]},
+  {rank:3, title:"Senior Engineer Challenge", words:[
+    {type:"def",   word:"alloy",      def:"a metal made by mixing two or more metals",        opts:["a type of iron","a metal made by mixing two or more metals","a very strong material","a kind of steel"]},
+    {type:"vowel", word:"patent",     vowel:"long-a",  opts:["short-a","long-a","short-e","long-i"]},
+    {type:"spell", word:"flexible",   def:"able to bend without breaking"},
+    {type:"syl",   word:"antibody",   syl:["an","ti","bod","y"]},
+    {type:"def",   word:"pattern",    def:"a repeating arrangement that can be recognized",   opts:["a random event","a type of design","a repeating arrangement that can be recognized","a computer program"]},
+    {type:"vowel", word:"predict",    vowel:"short-e", opts:["long-e","short-e","short-i","long-i"]},
+    {type:"spell", word:"persist",    def:"to keep trying even when things are difficult"},
+    {type:"syl",   word:"compression",syl:["com","pres","sion"]}
+  ]},
+  {rank:4, title:"Chief Engineer Final Challenge", words:[
+    {type:"def",   word:"blueprint",  def:"a detailed plan showing how something will be built", opts:["a type of pencil","a detailed plan showing how something will be built","a kind of notebook","a finished invention"]},
+    {type:"vowel", word:"innovate",   vowel:"short-i", opts:["long-i","short-i","long-o","short-o"]},
+    {type:"spell", word:"algorithm",  def:"step-by-step instructions for solving a problem"},
+    {type:"syl",   word:"atmosphere", syl:["at","mos","phere"]},
+    {type:"def",   word:"erosion",    def:"when water slowly wears away soil or rock",         opts:["when rivers freeze","when soil gets wet","when rocks become sand","when water slowly wears away soil or rock"]},
+    {type:"vowel", word:"evaporate",  vowel:"short-e", opts:["long-e","short-e","short-a","long-a"]},
+    {type:"spell", word:"conductor",  def:"a material that lets electricity pass through easily"},
+    {type:"syl",   word:"submersible",syl:["sub","mer","si","ble"]},
+    {type:"def",   word:"flexible",   def:"able to bend without breaking",                    opts:["very hard and rigid","able to bend without breaking","very heavy and dense","easy to cut through"]},
+    {type:"vowel", word:"circuit",    vowel:"short-i", opts:["short-u","long-i","short-i","long-e"]}
+  ]}
+];
+
+
+// ── STATE ──────────────────────────────────────────────────
+var S={
+  scores:{}, badges:[],
+  story:null, answered:{}, readCount:0,
+  qTime:0, tick:null,
+  fr:{rank:0,idx:0,correct:0,words:[]}
+};
+
+function save(){try{localStorage.setItem("KEA2s",JSON.stringify(S.scores));localStorage.setItem("KEA2b",JSON.stringify(S.badges));}catch(e){}}
+function load(){try{var s=localStorage.getItem("KEA2s"),b=localStorage.getItem("KEA2b");if(s)S.scores=JSON.parse(s);if(b)S.badges=JSON.parse(b);}catch(e){}}
+
+// ── UTILS ──────────────────────────────────────────────────
+function $(id){return document.getElementById(id);}
+function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
+function txt(tag,cls,t){var e=mk(tag,cls);e.textContent=t;return e;}
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+
+function showToast(m){var t=$("K_toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},3000);}
+
+var PAGES=["K_welcome","K_hub","K_test","K_result","K_fast","K_badge"];
+function showPage(id){
+  for(var i=0;i<PAGES.length;i++) $(PAGES[i]).classList.add("hide");
+  $(id).classList.remove("hide");
+  window.scrollTo(0,0);
+}
+
+// ── HUB ────────────────────────────────────────────────────
+function renderHub(){
+  load();
+  var n100=0;
+  for(var k in S.scores) if(S.scores[k]===100) n100++;
+  var ri=Math.min(4,Math.floor(n100/4));
+  var rank=RANKS[ri];
+
+  $("K_rico").textContent=rank.icon;
+  $("K_rnm").textContent=rank.name.toUpperCase();
+
+  var rd=rank.stories.filter(function(sid){return S.scores[sid]===100;}).length;
+  $("K_pbr").style.width=(rd/4*100)+"%";
+  $("K_pcr").textContent=rd+"/4";
+  $("K_pba").style.width=(n100/20*100)+"%";
+  $("K_pca").textContent=n100+"/20";
+
+  // badges
+  var bc=["#2563eb","#0891b2","#0d9488","#7c3aed","#b45309"];
+  var br=$("K_badges"); br.innerHTML="";
+  for(var i=0;i<RANKS.length;i++){
+    var r=RANKS[i];
+    var earned=S.badges.indexOf(i)>=0;
+    var item=mk("div","bdg");
+    var ring=mk("div","bring"+(earned?" on":""));
+    if(earned){ring.style.borderColor=bc[i];ring.style.background=bc[i]+"22";}
+    ring.textContent=earned?r.icon:"🔒";
+    var lbl=mk("div","blbl");
+    lbl.innerHTML=r.name.replace(" Engineer","")+"<br>Badge";
+    item.appendChild(ring);item.appendChild(lbl);
+    br.appendChild(item);
+  }
+
+  // story grid
+  var grid=$("K_grid"); grid.innerHTML="";
+  for(var i=0;i<STORIES.length;i++){
+    buildStoryBtn(grid, STORIES[i], ri);
+  }
+
+  showPage("K_hub");
+}
+
+function buildStoryBtn(grid, story, ri){
+  var sc=S.scores[story.id];
+  var done=sc===100;
+  var unlocked=story.rank<=ri||(story.id>0&&S.scores[story.id-1]===100);
+
+  var btn=mk("button","sbtn");
+  if(done) btn.classList.add("done");
+  else if(!unlocked) btn.classList.add("locked");
+
+  var sn=txt("div","sn","Story "+(story.id+1)+" "+RANKS[story.rank].icon);
+  var st=txt("div","st",story.title);
+  var tags=mk("div","stags");
+  tags.appendChild(txt("span","tg "+(story.len==="short"?"tg-s":"tg-l"),story.len==="short"?"Short":"Long"));
+  tags.appendChild(txt("span","tg tg-th",story.theme));
+  if(done) tags.appendChild(txt("span","tg tg-ok","✅ 100%"));
+  else if(sc) tags.appendChild(txt("span","tg tg-rt",sc+"% Retry"));
+
+  btn.appendChild(sn);btn.appendChild(st);btn.appendChild(tags);
+
+  if(unlocked&&!done){
+    btn.addEventListener("click",(function(sid){
+      return function(){ startStory(sid); };
+    })(story.id));
+  }
+  grid.appendChild(btn);
+}
+
+// ── STORY ──────────────────────────────────────────────────
+function startStory(sid){
+  var story=null;
+  for(var i=0;i<STORIES.length;i++) if(STORIES[i].id===sid){story=STORIES[i];break;}
+  if(!story){showToast("Story not found!");return;}
+
+  S.story=story; S.answered={}; S.readCount=0; S.qTime=Date.now();
+
+  // header - use textContent only, these are simple divs
+  $("K_tttl").textContent=story.title;
+  $("K_tsub").textContent=RANKS[story.rank].icon+" "+RANKS[story.rank].name+" — "+(story.len==="short"?"Short":"Long")+" Story";
+
+  // story panel
+  $("K_sttl").textContent=story.title;
+  var body=$("K_sbody"); body.innerHTML="";
+  var paras=story.text.split("\n");
+  for(var i=0;i<paras.length;i++){
+    if(paras[i].length>0){
+      var p=mk("p"); p.innerHTML=paras[i]; body.appendChild(p);
+    }
+  }
+
+  // read dots
+  $("K_rd1").classList.remove("lit");
+  $("K_rd2").classList.remove("lit");
+  $("K_rd3").classList.remove("lit");
+  $("K_rmsg").textContent="Tap a number each time you finish reading!";
+
+  buildQs(story);
+  startTimer();
+  showPage("K_test");
+}
+
+// ── QUESTIONS ──────────────────────────────────────────────
+function buildQs(story){
+  var wrap=$("K_qwrap"); wrap.innerHTML="";
+  $("K_submit").classList.add("hide");
+
+  var labels={literal:"📘 Literal",inference:"🔍 Inference",vocab:"📖 Vocabulary","main-idea":"🎯 Main Idea"};
+
+  for(var qi=0;qi<story.questions.length;qi++){
+    var q=story.questions[qi];
+    var block=mk("div","qb"); block.id="K_qb_"+qi;
+
+    var typeDiv=mk("div","qtype"+(q.type==="inference"?" inf":""));
+    typeDiv.textContent=labels[q.type]||q.type;
+
+    var qtxt=mk("div","qtxt");
+    qtxt.textContent=(qi+1)+". "+q.text;
+
+    var opts=mk("div","opts"); opts.id="K_opts_"+qi;
+
+    var fb=mk("div","fb"); fb.id="K_fb_"+qi;
+
+    block.appendChild(typeDiv);
+    block.appendChild(qtxt);
+    block.appendChild(opts);
+    block.appendChild(fb);
+    wrap.appendChild(block);
+
+    for(var oi=0;oi<q.opts.length;oi++){
+      buildOptBtn(opts, qi, oi, q.opts[oi]);
+    }
+  }
+}
+
+function buildOptBtn(container, qi, oi, optText){
+  var btn=mk("button","opt"); btn.id="K_op_"+qi+"_"+oi;
+  var lbl=txt("span","optl","ABCD"[oi]);
+  btn.appendChild(lbl);
+  btn.appendChild(document.createTextNode(optText));
+  btn.addEventListener("click",(function(qIdx,oIdx){
+    return function(){ answerQ(qIdx,oIdx); };
+  })(qi,oi));
+  container.appendChild(btn);
+}
+
+// ── ANSWER ─────────────────────────────────────────────────
+function answerQ(qi,oi){
+  if(S.answered[qi]) return;
+  var now=Date.now();
+  if((now-S.qTime)<4000) showToast("⏱️ Slow down! Read EVERY answer choice first!");
+  S.qTime=now;
+  if(S.readCount<1){showToast("📖 Read the story first!");return;}
+
+  var q=S.story.questions[qi];
+  var allOpts=$("K_opts_"+qi).querySelectorAll(".opt");
+
+  if(oi===q.ans){
+    S.answered[qi]=true;
+    for(var i=0;i<allOpts.length;i++) allOpts[i].classList.add("opt-done");
+    // disable via pointer-events in CSS via class
+    allOpts[qi] && 0; // noop
+    for(var i=0;i<allOpts.length;i++){
+      allOpts[i].style.pointerEvents="none";
+    }
+    allOpts[q.ans].classList.add("right");
+    allOpts[q.ans].querySelector(".optl").textContent="✓";
+    $("K_qb_"+qi).classList.add("ok");
+    $("K_qb_"+qi).classList.remove("bad");
+
+    var cs=["🎉 Exactly right!","✅ Perfect, Kasey!","🚀 Engineer thinking!","⚙️ You got it!","🌟 Correct!"];
+    var fb=$("K_fb_"+qi);
+    fb.textContent=cs[Math.floor(Math.random()*cs.length)]+" "+q.explain;
+    fb.className="fb show yes";
+
+    var total=S.story.questions.length,done=0;
+    for(var k in S.answered) done++;
+    if(done>=total) $("K_submit").classList.remove("hide");
+  } else {
+    allOpts[oi].classList.add("wrong");
+    allOpts[oi].style.pointerEvents="none";
+    $("K_qb_"+qi).classList.add("bad");
+    showCoach(q);
+  }
+}
+
+function showCoach(q){
+  var inf=q.type==="inference";
+  $("K_cico").textContent=inf?"🔍":"🤔";
+  $("K_cttl").textContent=inf?"Think Like a Detective!":"Think Like an Engineer!";
+  var msgs=inf
+    ?["That answer is not written directly. Use the clues — what does the story SHOW you?",
+      "Think about what the character did. What does that tell you?",
+      "Which answer makes sense based on what happened — even if not said directly?"]
+    :["Re-read the question. Eliminate answers you know are wrong first.",
+      "Go back to the story and find the part that answers this question.",
+      "Read ALL answer choices — the right one is there!"];
+  $("K_cmsg").textContent=msgs[Math.floor(Math.random()*msgs.length)];
+  $("K_chint").textContent=inf?"Tip: What does the story SHOW, even if it does not SAY it?":"Go back and re-read. The clue is in the story!";
+  $("K_coach").classList.remove("hide");
+}
+
+// ── TIMER ──────────────────────────────────────────────────
+function startTimer(){
+  clearInterval(S.tick);
+  S.timerSec=600;
+  tickTimer();
+  S.tick=setInterval(function(){S.timerSec--;tickTimer();if(S.timerSec<=0){clearInterval(S.tick);submitTest();}},1000);
+}
+function tickTimer(){
+  var m=Math.floor(S.timerSec/60),s=S.timerSec%60;
+  $("K_ttxt").textContent=m+":"+(s<10?"0":"")+s;
+  var p=S.timerSec/600*100;
+  var f=$("K_tfill");
+  f.style.width=p+"%";
+  f.className="tfill"+(p<30?" hot":p<50?" warn":"");
+}
+function stopTimer(){clearInterval(S.tick);}
+
+// ── READ DOTS ──────────────────────────────────────────────
+function markRead(n){
+  if(n>S.readCount+1) return;
+  S.readCount=Math.max(S.readCount,n);
+  for(var i=1;i<=3;i++) $("K_rd"+i).classList.toggle("lit",i<=S.readCount);
+  var ms=["","Great! Read it once more for more clues.","Almost — one more read!","All 3 reads done! Answer the questions."];
+  $("K_rmsg").textContent=ms[S.readCount]||ms[3];
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────
+function submitTest(){
+  stopTimer();
+  var story=S.story,total=story.questions.length,correct=0;
+  for(var i=0;i<total;i++) if(S.answered[i]) correct++;
+  var pct=Math.round(correct/total*100);
+  if(!S.scores[story.id]||pct>S.scores[story.id]){S.scores[story.id]=pct;save();}
+  showResult(story,pct,correct,total);
+}
+
+// ── RESULT ─────────────────────────────────────────────────
+function showResult(story,pct,correct,total){
+  var perfect=pct===100;
+  if(perfect) launchConfetti();
+  $("K_rico2").textContent=perfect?"🏆":pct>=80?"⭐":"💪";
+  $("K_rttl").textContent=perfect?"Perfect Score, Kasey!":pct>=80?"Great Job!":"Keep Trying!";
+  var ring=$("K_sring");
+  ring.style.background="conic-gradient(#22c55e 0% "+pct+"%, #e2e8f0 "+pct+"%)";
+  ring.textContent=pct+"%";
+  if(perfect) $("K_rmsg2").textContent="You got "+correct+"/"+total+" — 100%! That counts toward your "+RANKS[story.rank].name+" badge!";
+  else if(pct>=80) $("K_rmsg2").textContent="You got "+correct+"/"+total+". So close! Need 100% for badge credit — try again!";
+  else $("K_rmsg2").textContent="You got "+correct+"/"+total+". Read it carefully one more time — you can do it!";
+
+  var flu=$("K_frlock"); flu.innerHTML="";
+  if(perfect){
+    var allDone=RANKS[story.rank].stories.every(function(sid){return S.scores[sid]===100;});
+    if(allDone&&S.badges.indexOf(story.rank)<0){
+      var box=mk("div");
+      box.style.cssText="background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:14px;padding:15px 18px;margin:14px 0;text-align:center";
+      var ic=txt("div",null,RANKS[story.rank].icon); ic.style.fontSize="2.2rem";
+      var ttl=txt("div",null,"Fast Round Unlocked!"); ttl.style.cssText="font-weight:700;color:#92400e;margin:5px 0";
+      var sub=txt("div",null,"All 4 stories at 100%! Beat the Fast Round to earn your "+RANKS[story.rank].name+" badge!");
+      sub.style.cssText="font-size:.84rem;color:#78350f;margin-bottom:11px";
+      var frb=txt("button","btn btn-orange","Start Fast Round ⚡");
+      frb.addEventListener("click",(function(ri){return function(){startFastRound(ri);};})(story.rank));
+      box.appendChild(ic);box.appendChild(ttl);box.appendChild(sub);box.appendChild(frb);
+      flu.appendChild(box);
+    }
+  }
+
+  var rev=$("K_review"); rev.innerHTML="";
+  for(var i=0;i<story.questions.length;i++){
+    var q=story.questions[i],got=S.answered[i];
+    var item=mk("div","ritem");
+    item.style.background=got?"#f0fdf4":"#fff1f2";
+    item.style.border="1.5px solid "+(got?"#86efac":"#fca5a5");
+    item.appendChild(txt("div","riq",(i+1)+". "+q.text));
+    item.appendChild(txt("div","ria","✅ "+q.opts[q.ans]));
+    item.appendChild(txt("div","rie",q.explain));
+    rev.appendChild(item);
+  }
+
+  var nb=$("K_rnext");
+  if(perfect&&story.id<19){
+    nb.classList.remove("hide");
+    nb.onclick=(function(sid){return function(){startStory(sid+1);};})(story.id);
+  } else nb.classList.add("hide");
+
+  showPage("K_result");
+}
+
+// ── FAST ROUND ─────────────────────────────────────────────
+function startFastRound(ri){
+  var fr=FAST_ROUNDS[ri];
+  S.fr={rank:ri,idx:0,correct:0,words:shuffle(fr.words.slice())};
+  var r=RANKS[ri];
+  var info=$("K_frinfo"); info.innerHTML="";
+  var box=mk("div"); box.style.cssText="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;padding:11px 16px;display:flex;align-items:center;gap:12px";
+  var ic=txt("div",null,r.icon); ic.style.fontSize="2rem";
+  var tx=mk("div");
+  tx.innerHTML="<strong style=\'font-family:Baloo 2,cursive;color:#1e4080\'>"+r.name+"</strong><br><span style=\'font-size:.8rem;color:#475569\'>"+fr.title+" — "+fr.words.length+" questions</span>";
+  box.appendChild(ic);box.appendChild(tx);info.appendChild(box);
+  updateFrScore();
+  $("K_frnext").classList.add("hide");
+  $("K_frdone").classList.add("hide");
+  renderFrQ();
+  showPage("K_fast");
+}
+
+function updateFrScore(){$("K_frscore").textContent="Score: "+S.fr.correct+" / "+S.fr.words.length;}
+
+function renderFrQ(){
+  $("K_frnext").classList.add("hide");
+  $("K_frdone").classList.add("hide");
+  var w=S.fr.words[S.fr.idx];
+  var area=$("K_frarea"); area.innerHTML="";
+  if(w.type==="def")   frDef(area,w);
+  else if(w.type==="vowel") frVowel(area,w);
+  else if(w.type==="spell") frSpell(area,w);
+  else if(w.type==="syl")   frSyl(area,w);
+}
+
+function lockFr(){$("K_frarea").querySelectorAll(".fopt").forEach(function(b){b.style.pointerEvents="none";});}
+function frDone2(){if(S.fr.idx>=S.fr.words.length-1)$("K_frdone").classList.remove("hide");else $("K_frnext").classList.remove("hide");}
+
+function frDef(area,w){
+  var opts=shuffle(w.opts);
+  var p=mk("div","frp"); p.innerHTML="What does <span style='color:#f97316'>"+w.word+"</span> mean?";
+  var h=txt("div","frh","Pick the best definition.");
+  var g=mk("div","frgrid");
+  area.appendChild(p);area.appendChild(h);area.appendChild(g);
+  opts.forEach(function(opt){
+    var b=txt("button","fopt",opt);
+    b.addEventListener("click",function(){
+      lockFr();
+      if(opt===w.def){b.classList.add("hit");S.fr.correct++;}
+      else{b.classList.add("miss");g.querySelectorAll(".fopt").forEach(function(x){if(x.textContent===w.def)x.classList.add("hit");});}
+      updateFrScore();frDone2();
+    });
+    g.appendChild(b);
+  });
+}
+
+function frVowel(area,w){
+  var opts=shuffle(w.opts);
+  var vwls="aeiouAEIOU",hl="";
+  for(var i=0;i<w.word.length;i++){var c=w.word[i];hl+=vwls.indexOf(c)>=0?"<span style='color:#f97316;font-weight:900'>"+c+"</span>":c;}
+  var p=mk("div","frp"); p.innerHTML="Vowel sound in: <span style='letter-spacing:4px'>"+hl+"</span>";
+  var h=txt("div","frh","What vowel sound do you hear?");
+  var g=mk("div","frgrid");
+  area.appendChild(p);area.appendChild(h);area.appendChild(g);
+  opts.forEach(function(opt){
+    var b=txt("button","fopt",opt);
+    b.addEventListener("click",function(){
+      lockFr();
+      if(opt===w.vowel){b.classList.add("hit");S.fr.correct++;}
+      else{b.classList.add("miss");g.querySelectorAll(".fopt").forEach(function(x){if(x.textContent===w.vowel)x.classList.add("hit");});}
+      updateFrScore();frDone2();
+    });
+    g.appendChild(b);
+  });
+}
+
+function frSpell(area,w){
+  var letters=shuffle(w.word.split(""));
+  area.appendChild(txt("div","frp","Spell the word that means:"));
+  area.appendChild(txt("div","frh",w.def));
+  var srow=mk("div","srow"); area.appendChild(srow);
+  var trow=mk("div","trow"); area.appendChild(trow);
+  var brow=mk("div"); brow.style.cssText="text-align:center;margin-top:10px"; area.appendChild(brow);
+
+  for(var i=0;i<w.word.length;i++){
+    var sl=mk("div","slot"); sl.dataset.i=i;
+    sl.addEventListener("click",(function(idx){return function(){
+      var s=srow.children[idx];
+      if(!s.classList.contains("filled")) return;
+      trow.children[s.dataset.ti].classList.remove("used");
+      s.textContent="";s.classList.remove("filled");delete s.dataset.ti;
+    };})(i));
+    srow.appendChild(sl);
+  }
+
+  letters.forEach(function(letter,ti){
+    var t=txt("div","tile",letter.toUpperCase());
+    t.addEventListener("click",function(){
+      if(t.classList.contains("used")) return;
+      var empty=null;
+      for(var i=0;i<srow.children.length;i++){if(!srow.children[i].classList.contains("filled")){empty=srow.children[i];break;}}
+      if(!empty) return;
+      t.classList.add("used");
+      empty.textContent=letter.toUpperCase();empty.classList.add("filled");empty.dataset.ti=ti;
+    });
+    trow.appendChild(t);
+  });
+
+  var chk=txt("button","btn btn-blue btn-sm","Check ✓");
+  chk.addEventListener("click",function(){
+    var ans="";
+    for(var i=0;i<srow.children.length;i++) ans+=srow.children[i].textContent.toLowerCase();
+    var ok=ans===w.word;
+    for(var i=0;i<srow.children.length;i++) srow.children[i].style.background=ok?"#dcfce7":"#fee2e2";
+    for(var i=0;i<trow.children.length;i++) trow.children[i].style.pointerEvents="none";
+    chk.disabled=true;
+    if(ok) S.fr.correct++;
+    updateFrScore();frDone2();
+  });
+  var clr=txt("button","btn btn-gray btn-sm","Clear ↺"); clr.style.marginLeft="8px";
+  clr.addEventListener("click",function(){
+    for(var i=0;i<srow.children.length;i++){srow.children[i].textContent="";srow.children[i].classList.remove("filled");srow.children[i].style.background="";delete srow.children[i].dataset.ti;}
+    for(var i=0;i<trow.children.length;i++){trow.children[i].classList.remove("used");trow.children[i].style.pointerEvents="";}
+  });
+  brow.appendChild(chk);brow.appendChild(clr);
+}
+
+function frSyl(area,w){
+  var count=w.syl.length;
+  var pool=[1,2,3,4,5,6].filter(function(n){return n!==count;});
+  pool.unshift(count);
+  var opts=shuffle(pool.slice(0,4));
+  area.appendChild(txt("div","frp","How many syllables in:"));
+  var big=txt("div",null,w.word); big.style.cssText="font-size:3rem;text-align:center;letter-spacing:4px;margin:9px 0;font-weight:700"; area.appendChild(big);
+  var bxs=mk("div"); bxs.style.cssText="display:flex;gap:7px;justify-content:center;margin:9px 0 14px"; area.appendChild(bxs);
+  var g=mk("div","frgrid"); g.style.cssText="grid-template-columns:repeat(4,1fr);max-width:400px;margin:0 auto"; area.appendChild(g);
+  w.syl.forEach(function(s,i){
+    var sb=txt("div","sylb",s); sb.id="K_sb_"+i; bxs.appendChild(sb);
+  });
+  setTimeout(function(){
+    for(var i=0;i<w.syl.length;i++){(function(idx){setTimeout(function(){var e=document.getElementById("K_sb_"+idx);if(e)e.classList.add("pop");},idx*260);})(i);}
+  },300);
+  opts.forEach(function(num){
+    var b=txt("button","fopt",""+num);
+    b.addEventListener("click",function(){
+      lockFr();
+      if(num===count){b.classList.add("hit");S.fr.correct++;}
+      else{b.classList.add("miss");g.querySelectorAll(".fopt").forEach(function(x){if(parseInt(x.textContent)===count)x.classList.add("hit");});}
+      updateFrScore();frDone2();
+    });
+    g.appendChild(b);
+  });
+}
+
+function frFinish(){
+  if(S.badges.indexOf(S.fr.rank)<0) S.badges.push(S.fr.rank);
+  save();showBadge(S.fr.rank);
+}
+
+// ── BADGE ──────────────────────────────────────────────────
+function showBadge(ri){
+  var r=RANKS[ri]; launchConfetti();
+  $("K_bico").textContent=r.icon;
+  $("K_bttl").textContent=r.name+" Badge Earned!";
+  $("K_bsub").textContent="Fast Round complete — amazing work, Kasey!";
+  var body=$("K_bbody"); body.innerHTML="";
+  body.appendChild(txt("div",null,r.icon)).style.fontSize="3.5rem";
+  var nm=txt("div",null,r.name); nm.style.cssText="font-weight:800;font-size:1.35rem;color:#92400e;margin:8px 0"; body.appendChild(nm);
+  var tx=mk("div"); tx.style.cssText="font-size:.86rem;color:#78350f";
+  tx.innerHTML="Awarded to Kasey for completing all 4 stories at 100%<br>and winning the Fast Round Word Challenge!";
+  body.appendChild(tx);
+  var dt=txt("div",null,"⚙️ Engineering Reading Academy · 2nd Grade"); dt.style.cssText="margin-top:11px;font-size:.78rem;color:#b45309"; body.appendChild(dt);
+  showPage("K_badge");
+}
+
+// ── CONFETTI ───────────────────────────────────────────────
+function launchConfetti(){
+  var cw=$("K_confetti"); cw.innerHTML="";
+  var cols=["#f97316","#fbbf24","#22c55e","#2563eb","#a855f7","#f43f5e","#38bdf8"];
+  for(var i=0;i<70;i++){
+    var p=mk("div","cp");
+    var sz=6+Math.random()*9;
+    p.style.left=Math.random()*100+"%";
+    p.style.width=sz+"px";p.style.height=sz+"px";
+    p.style.background=cols[Math.floor(Math.random()*cols.length)];
+    p.style.animationDuration=(1.5+Math.random()*2)+"s";
+    p.style.animationDelay=(Math.random()*.8)+"s";
+    cw.appendChild(p);
+  }
+  setTimeout(function(){cw.innerHTML="";},4500);
+}
+
+// ── BOOT ───────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded",function(){
+  $("K_goHub").addEventListener("click",function(){renderHub();});
+  $("K_back").addEventListener("click",function(){stopTimer();S.answered={};renderHub();});
+  $("K_submit").addEventListener("click",function(){submitTest();});
+  $("K_cclose").addEventListener("click",function(){$("K_coach").classList.add("hide");});
+  $("K_rd1").addEventListener("click",function(){markRead(1);});
+  $("K_rd2").addEventListener("click",function(){markRead(2);});
+  $("K_rd3").addEventListener("click",function(){markRead(3);});
+  $("K_rhub").addEventListener("click",function(){renderHub();});
+  $("K_rnext").addEventListener("click",function(){});
+  $("K_frnext").addEventListener("click",function(){S.fr.idx++;renderFrQ();});
+  $("K_frdone").addEventListener("click",function(){frFinish();});
+  $("K_bcer").addEventListener("click",function(){renderHub();});
+});
+</script>
+</body>
+</html>
